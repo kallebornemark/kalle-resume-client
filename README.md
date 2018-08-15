@@ -1,31 +1,10 @@
-# kalle-resume-vue
+# Kalle Bornemark Resume (Client)
 
-## Project setup
-```
-yarn install
-```
+## Techniques
+* Vue
+* SASS
+* Element-UI
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+## License
 
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Run your unit tests
-```
-yarn run test:unit
-```
-
-### Run your end-to-end tests
-```
-yarn run test:e2e
-```
+MIT © Kalle Bornemark
