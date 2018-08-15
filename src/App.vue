@@ -54,7 +54,7 @@ export default {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       };
-      const sections = await fetch('api/Sections?filter[include]=sectionRows', { headers });
+      const sections = await fetch(`${process.env.VUE_APP_API_URL}/api/Sections?filter[include]=sectionRows`, { headers });
       const sectionsJson = await sections.json();
       this.sections = sectionsJson;
     },

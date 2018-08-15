@@ -8,8 +8,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
-    "deploy": "node ./node_modules/vue-gh-pages/index.js"
+    "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
     "element-ui": "^2.4.4",
