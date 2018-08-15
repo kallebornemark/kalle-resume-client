@@ -5,7 +5,7 @@
     <div class="items">
       <i v-if="!items" class="el-icon-loading"></i>
 
-      <div v-else v-for="item in items" :key="item.id">
+      <div v-else v-for="item in items" :key="item.id" class="item">
         <i :class="['icon', item.icon]"></i>
         <a v-if="item.linkUrl" target="_blank" :href="item.linkUrl">{{ item.content }}</a>
         <span v-else>{{ item.content }}</span>
@@ -62,8 +62,12 @@ export default {
   }
   .items {
     padding: 1rem;
-    .icon {
-      margin-right: 1rem;
+    .item {
+      margin-bottom: $spacing-xxs;
+
+      .icon {
+        margin-right: 1rem;
+      }
     }
   }
 }

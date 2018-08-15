@@ -3,6 +3,16 @@
     <div class="heading">
       <portfolio-rectangle />
       <span class="name">{{ section.name }}</span>
+
+      <!-- TODO: Change v-if to isLoggedIn -->
+      <el-button
+        v-if="isLoggedIn"
+        :section="section"
+        @click="openAddSectionDialog(section)"
+        :style="{ marginLeft: '1rem' }"
+        icon="el-icon-plus"
+        circle
+      />
     </div>
 
     <div class="table">
@@ -36,28 +46,37 @@
         </template>
       </el-table>
     </div>
+
+    <add-entry-dialog />
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
 import ConditionalLink from '@/components/ConditionalLink.vue';
 import Rectangle from './Rectangle.vue';
+import AddEntryDialog from './AddEntryDialog.vue';
 
 export default {
   name: 'Section',
   components: {
     ConditionalLink,
+    AddEntryDialog,
     'portfolio-rectangle': Rectangle,
   },
   props: ['section'],
 
   computed: {
+    ...mapState(['isLoggedIn']),
+
     filteredRows() {
       return this.section.sectionRows.filter(sr => !sr.hidden);
     },
   },
 
   methods: {
+    ...mapMutations(['openAddSectionDialog']),
+
     hasColumn(columnName) {
       return this.section.sectionRows.some(sr => sr[columnName]);
     },
