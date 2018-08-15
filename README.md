@@ -7,7 +7,7 @@
 
 ## Todo
 
-- [ ] Login with Vuex token
+- [X] Login with Vuex token
 - [ ] CRUD operations through UI
 - [ ] Optimize responsiveness (table -> cards?)
 
