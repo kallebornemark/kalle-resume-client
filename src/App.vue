@@ -12,7 +12,7 @@
           <p>
             I am a driven, meticulous and socially capable software developer constantly looking into new techniques and challenges.
             Although I usually label myself as a full-stack developer, I've lately spent most of my time building front-ends,
-            and most of these have been made with either React or Vue.js.
+            and mostly with either React or Vue.js.
           </p>
         </highlight-box>
 

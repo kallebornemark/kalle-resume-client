@@ -2,12 +2,17 @@
   <div class="header">
     <span class="name">Kalle Bornemark</span>
     <span class="subtitle">Developer</span>
+
+    <login />
   </div>
 </template>
 
 <script>
+import Login from '@/components/Login.vue';
+
 export default {
   name: 'Header',
+  components: { Login },
 };
 </script>
 
@@ -26,6 +31,7 @@ export default {
     color: $color-primary;
     font-family: $font-primary;
     font-size: 3.3em;
+    text-align: center;
   }
 
   .subtitle {
