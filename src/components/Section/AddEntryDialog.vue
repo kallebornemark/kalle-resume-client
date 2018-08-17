@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     class="add-section-dialog"
-    :title="`Add row to ⭐ ${currentSection && currentSection.name}`"
+    :title="`Add row to ${currentSection && currentSection.name}`"
     :visible="addEntryDialogIsVisible"
     width="50rem"
     :before-close="closeAddSectionDialog">
@@ -47,6 +47,8 @@ export default {
     async save() {
       const headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
       headers.Authorization = this.token;
+
+      // Only add fields to payload if they have some data
       const body = {
         sectionId: this.currentSection.id,
         main: this.main,
@@ -56,7 +58,6 @@ export default {
         ...(this.rightLinkURL ? { rightLinkURL: this.rightLinkURL } : {}),
         ...(this.hidden ? { hidden: this.hidden } : {}),
       };
-      debugger;
       const jsonBody = JSON.stringify(body);
 
       try {
