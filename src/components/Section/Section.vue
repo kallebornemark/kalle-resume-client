@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <div class="heading">
-      <portfolio-rectangle />
+      <!-- <portfolio-rectangle /> -->
       <span class="name">{{ section.name }}</span>
 
       <!-- TODO: Change v-if to isLoggedIn -->
@@ -18,32 +18,29 @@
     <div class="table">
       <el-table
         :data="filteredRows"
-        style="width: 100%"
         :show-header="false"
         row-class-name="row"
         cell-class-name="cell"
       >
-        <template slot-scope="scope">
-          <el-table-column v-if="hasColumn('left')" prop="left" width="130" />
+        <el-table-column v-if="hasColumn('left')" prop="left" width="130" />
 
-          <el-table-column v-if="hasColumn('main')" prop="main">
-            <template slot-scope="scope">
-              <div v-html="scope.row.main" />
-              <div v-if="scope.row.description" class="description">
-                {{ scope.row.description }}
-              </div>
-            </template>
-          </el-table-column>
+        <el-table-column v-if="hasColumn('main')" prop="main">
+          <template slot-scope="scope">
+            <span v-html="scope.row.main" />
+            <div v-if="scope.row.description" class="description">
+              {{ scope.row.description }}
+            </div>
+          </template>
+        </el-table-column>
 
-          <el-table-column v-if="hasColumn('right')" align="right" width="150">
-            <template slot-scope="scope">
-              <conditional-link :hasLink="!!scope.row.rightLinkURL">
-                <a slot="link" :href="scope.row.rightLinkURL" target="_blank"></a>
-                <span slot="text">{{ scope.row.right }}</span>
-              </conditional-link>
-            </template>
-          </el-table-column>
-        </template>
+        <el-table-column v-if="hasColumn('right')" align="right" width="150">
+          <template slot-scope="scope">
+            <conditional-link :hasLink="!!scope.row.rightLinkURL">
+              <a slot="link" :href="scope.row.rightLinkURL" target="_blank"></a>
+              <span slot="text">{{ scope.row.right }}</span>
+            </conditional-link>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
 

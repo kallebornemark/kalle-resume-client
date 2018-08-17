@@ -13,8 +13,7 @@
           <p>Kalle here. Welcome to my resume.</p>
           <p>
             I am a driven, meticulous and socially capable software developer constantly looking into new techniques and challenges.
-            Although I usually label myself as a full-stack developer, I've lately spent most of my time building front-ends,
-            and mostly with either React or Vue.js.
+            Although I usually label myself as a full-stack developer, I've lately spent most of my time building front-ends.
           </p>
         </highlight-box>
       </div>

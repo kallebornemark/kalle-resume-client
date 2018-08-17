@@ -17,8 +17,7 @@ export default {
 @import '~@/styles/vars.scss';
 
 .sidebar {
-  width: 15.5rem;
-  margin-right: 1.5rem;
+  min-width: 15.5rem;
 
   @media screen and (max-width: $screen-md) {
     width: 100%;

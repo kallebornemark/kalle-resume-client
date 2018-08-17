@@ -10,6 +10,7 @@ $color-primary: #505050;
 $color-accent: #ec8677;
 $color-accent-faded: transparentize($color-accent, .5);
 $color-secondary: #2DA0AF;
+$color-secondary-faded: transparentize(#2DA0AF, .6);
 $color-shadow: transparentize(lightgray, .6);
 $color-border: transparentize(lightgray, .4);
 
