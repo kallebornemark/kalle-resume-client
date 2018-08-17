@@ -3,11 +3,13 @@
     <portfolio-header />
 
     <div class="main">
-      <portfolio-sidebar />
+      <div class="sidebar-container">
+        <portfolio-sidebar />
+      </div>
 
-      <div class="content">
+      <div class="highlight-container">
         <highlight-box>
-          <h1>Howdy!</h1>
+          <h2>Howdy!</h2>
           <p>Kalle here. Welcome to my resume.</p>
           <p>
             I am a driven, meticulous and socially capable software developer constantly looking into new techniques and challenges.
@@ -15,7 +17,9 @@
             and mostly with either React or Vue.js.
           </p>
         </highlight-box>
+      </div>
 
+      <div class="sections-container">
         <i v-if="!sections" class="el-icon-loading"></i>
         <portfolio-section v-for="section in sections" :key="section.id" v-bind="{ section }"/>
       </div>
@@ -26,7 +30,7 @@
 </template>
 
 <script>
-import Header from '@/components/Header.vue';
+import Header from '@/components/Header/Header.vue';
 import Footer from '@/components/Footer.vue';
 import Sidebar from '@/components/Sidebar/Sidebar.vue';
 import Section from '@/components/Section/Section.vue';
@@ -79,16 +83,57 @@ export default {
   margin: 0 auto;
 
   .main {
-    display: flex;
-    @media screen and (max-width: $screen-md) {
+    position: relative;
+    display: grid;
+    grid-template-columns: 15.5rem auto;
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1.5rem;
+
+    @media screen and (max-width: $screen-xs) {
+      display: flex;
       flex-direction: column;
     }
 
-    .content {
-      flex: 1;
-      // padding: 0 1rem;
-      @media screen and (max-width: $screen-md) {
-        padding: 0;
+    .sidebar-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      width: 15.5rem;
+
+      @media screen and (max-width: $screen-sm) {
+        position: initial;
+      }
+
+      @media screen and (max-width: $screen-sm) {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .highlight-container {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+
+      h2 {
+        margin: 0 0 1.5rem 0;
+        font-size: 1.4em;
+      }
+
+      @media screen and (max-width: $screen-sm) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .sections-container {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+
+      @media screen and (max-width: $screen-sm) {
+        grid-column: 1 / 3;
+      }
+
+      @media screen and (max-width: $screen-xs) {
         margin-top: 1rem;
       }
 
