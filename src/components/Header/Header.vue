@@ -1,6 +1,7 @@
 <template>
   <div class="header">
     <span class="name">Kalle Bornemark</span>
+    <header-line />
     <span class="subtitle">Developer</span>
 
     <login />
@@ -9,10 +10,11 @@
 
 <script>
 import Login from '@/components/Login.vue';
+import HeaderLine from '@/components/Header/HeaderLine.vue';
 
 export default {
   name: 'Header',
-  components: { Login },
+  components: { Login, HeaderLine },
 };
 </script>
 
@@ -32,16 +34,23 @@ export default {
     font-family: $font-primary;
     font-size: 3.3em;
     text-align: center;
+    line-height: 4.3rem;
+    padding: 0 1rem;
   }
 
   .subtitle {
-    color: $color-accent;
-    font-family: $font-secondary;
-    font-size: 1.2em;
+    // color: darken($color-accent-faded, 18%);
+    color: $color-primary;
+    opacity: .4;
+    // font-family: $font-secondary;
+    // font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    // eslint-disable-next-line
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+    // font-size: 1em;
     letter-spacing: 5px;
-    font-weight: bold;
+    font-weight: 600;
     text-transform: lowercase;
-    margin-top: .4rem;
+    margin-top: .5rem;
   }
 }
 </style>
