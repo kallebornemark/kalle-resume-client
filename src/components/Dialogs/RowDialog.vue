@@ -1,72 +1,124 @@
 <template>
   <el-dialog
     class="row-dialog"
-    :title="isNewRow ? 'Add row' : 'Edit row'"
+    :title="isNewRow ? `Add row to section: ${currentSection && currentSection.name}` : 'Edit row'"
     :visible="rowDialogIsVisible"
     width="50rem"
     :before-close="toggleRowDialog">
 
-    <el-input placeholder="Left" :value="currentRow.left" @input.native="handleUpdateRow($event, 'left')"/>
-    <el-input placeholder="Main" :value="currentRow.main" type="textarea"/>
-    <el-input placeholder="Description" :value="currentRow.description" type="textarea"/>
-    <el-input placeholder="Right" :value="currentRow.right" />
-    <el-input placeholder="Right link URL" :value="currentRow.rightLinkURL" />
-    <el-checkbox placeholder="Hidden" :value="currentRow.hidden">Hidden</el-checkbox>
+    <div class="input-group">
+      <span class="property-name">Left</span>
+      <el-input :value="currentRow.left" @input.native="handleUpdateRow('left', $event.target.value)" />
+    </div>
+
+    <div class="input-group">
+      <span class="property-name">Main</span>
+      <el-input :value="currentRow.main" type="textarea" :rows="3" @input.native="handleUpdateRow('main', $event.target.value)" />
+    </div>
+
+    <div class="input-group">
+      <span class="property-name">Description</span>
+      <el-input :value="currentRow.description" type="textarea" :rows="3" @input.native="handleUpdateRow('description', $event.target.value)"/>
+    </div>
+
+    <div class="input-group">
+      <span class="property-name">Right</span>
+      <el-input :value="currentRow.right" @input.native="handleUpdateRow('right', $event.target.value)" />
+    </div>
+
+    <div class="input-group">
+      <span class="property-name">Right link URL</span>
+      <el-input :value="currentRow.rightLinkURL" @input.native="handleUpdateRow('rightLinkURL', $event.target.value)" />
+    </div>
+
+    <!-- Commented out ATM, risky too use -->
+    <!-- <div class="input-group">
+      <span class="property-name">ID</span>
+      <el-input-number :value="currentRow.id" @change="handleUpdateRow('id', $event)" />
+    </div>
+
+    <div class="input-group">
+      <span class="property-name">Section ID</span>
+      <el-input-number v-model="currentRow.sectionId" @change="handleUpdateRow('sectionId', $event)" />
+    </div> -->
+
+    <div class="input-group">
+      <span class="property-name"></span>
+      <el-checkbox v-model="hidden">Hidden</el-checkbox>
+    </div>
 
     <span slot="footer" class="dialog-footer">
-      <el-button @click="toggleRowDialog">Cancel</el-button>
-      <el-button type="primary" @click="add" v-if="isNewRow">Add</el-button>
-      <el-button type="primary" @click="save" v-else>Save</el-button>
+      <el-button type="danger" @click="remove" v-if="!isNewRow" icon="el-icon-delete" round>Delete row</el-button>
+      <el-button type="primary" @click="add" v-if="isNewRow" icon="el-icon-plus" round>Add row</el-button>
+      <el-button type="primary" @click="update" v-if="!isNewRow" icon="el-icon-check" round>Update row</el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex';
+import API from '@/api';
 
 export default {
   name: 'RowDialog',
 
+  props: ['reloadData'],
+
   computed: {
-    ...mapState(['token', 'rowDialogIsVisible', 'currentRow', 'isNewRow']),
+    ...mapState(['token', 'rowDialogIsVisible', 'currentRow', 'currentSection', 'isNewRow']),
+
+    properties() {
+      return Object.keys(this.currentRow).map(key => key);
+    },
+
+    hidden: {
+      get() { return this.currentRow.hidden; },
+      set() { this.updateRow({ field: 'hidden', value: !this.currentRow.hidden }); },
+    },
   },
 
   methods: {
     ...mapMutations(['toggleRowDialog', 'updateRow']),
 
-    handleUpdateRow(e, field) {
-      this.updateRow({ value: e.target.value, field });
+    handleUpdateRow(field, value) {
+      this.updateRow({ field, value });
     },
 
-    async save() {
-      const headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
-      headers.Authorization = this.token;
+    update() {
+      const jsonBody = JSON.stringify(this.currentRow);
 
-      // Only add fields to payload if they have some data
-      const body = {
-        rowId: this.currentRow.id,
-        main: this.main,
-        ...(this.left ? { left: this.left } : {}),
-        ...(this.description ? { description: this.description } : {}),
-        ...(this.right ? { right: this.right } : {}),
-        ...(this.rightLinkURL ? { rightLinkURL: this.rightLinkURL } : {}),
-        ...(this.hidden ? { hidden: this.hidden } : {}),
-      };
-      const jsonBody = JSON.stringify(body);
-
-      try {
-        await fetch(`${process.env.VUE_APP_API_URL}/api/RowRows`, {
-          headers,
-          method: 'POST',
-          body: jsonBody,
-        });
-      } catch (e) {
-        console.log(e);
-      }
+      API.patch(
+        '/api/SectionRows',
+        jsonBody,
+        () => this.toggleRowDialog({}),
+      );
     },
 
     add() {
-      alert('Added!');
+      const body = { ...this.currentRow, sectionId: this.currentSection.id };
+      const jsonBody = JSON.stringify(body);
+
+      API.post(
+        '/api/SectionRows', // endpoint
+        jsonBody, // body
+        this.reset, // onSuccess
+      );
+    },
+
+    remove() {
+      if (confirm('Are you sure?')) {
+        API.delete(
+          `/api/SectionRows/${this.currentRow.id}`, // enpoint
+          this.reset(), // onSuccess
+        );
+      }
+    },
+
+    reset() {
+      this.toggleRowDialog({});
+      this.$nextTick(() => {
+        this.reloadData();
+      });
     },
   },
 };
@@ -76,8 +128,23 @@ export default {
 @import '~@/styles/vars.scss';
 
 .row-dialog {
-  .el-input, .el-textarea {
+  .input-group {
+    display: flex;
+    align-items: center;
     margin-bottom: 1rem;
+
+    .property-name {
+      display: flex;
+      flex-shrink: 0;
+      justify-content: flex-end;
+      width: 6.5rem;
+      margin-right: $spacing-sm;
+      font-weight: bold;
+    }
   }
+}
+
+.el-input-group__prepend {
+  width: 5rem;
 }
 </style>
