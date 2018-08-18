@@ -20,7 +20,7 @@
       <portfolio-section v-for="section in sections" :key="section.id" v-bind="{ section }"/>
     </div>
 
-    <row-dialog />
+    <row-dialog :reload-data="reloadData"/>
   </div>
 </template>
 
@@ -59,6 +59,11 @@ export default {
       const sections = await fetch(`${process.env.VUE_APP_API_URL}/api/Sections?filter[include]=sectionRows`, { headers });
       const sectionsJson = await sections.json();
       this.sections = sectionsJson;
+    },
+
+    reloadData() {
+      this.section = null;
+      this.getSections();
     },
   },
 

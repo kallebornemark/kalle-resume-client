@@ -9,42 +9,49 @@ const getInitialRow = () => ({
   description: '',
   right: '',
   rightLinkURL: '',
-  hidden: '',
+  hidden: false,
 });
 
-export default new Vuex.Store({
-  state: {
-    token: null,
-    isLoggedIn: false,
-    sectionDialogIsVisible: false,
-    currentSection: null,
+let store;
 
-    rowDialogIsVisible: false,
-    currentRow: getInitialRow(),
-    isNewRow: true,
-  },
+const initStore = () => (
+  store || (store = new Vuex.Store({
+    state: {
+      token: null,
+      isLoggedIn: false,
+      sectionDialogIsVisible: false,
+      currentSection: null,
 
-  mutations: {
-    setToken(state, token) {
-      const newState = state;
-      newState.token = token;
-      newState.isLoggedIn = !!newState.token;
+      rowDialogIsVisible: false,
+      currentRow: getInitialRow(),
+      isNewRow: true,
     },
 
-    toggleRowDialog(state, { index, rows, isNewRow = false }) {
-      state.rowDialogIsVisible = !state.rowDialogIsVisible;
-      state.currentRow = index !== undefined && rows !== undefined
-        ? rows[index]
-        : getInitialRow();
-      state.isNewRow = isNewRow;
+    mutations: {
+      setToken(state, token) {
+        const newState = state;
+        newState.token = token;
+        newState.isLoggedIn = !!newState.token;
+      },
+
+      toggleRowDialog(state, { section, index, rows, isNewRow = false }) {
+        state.rowDialogIsVisible = !state.rowDialogIsVisible;
+        state.currentRow = index !== undefined && rows !== undefined
+          ? rows[index]
+          : getInitialRow();
+        state.currentSection = section;
+        state.isNewRow = isNewRow;
+      },
+
+      updateRow(state, { field, value }) {
+        state.currentRow[field] = value;
+      },
     },
 
-    updateRow(state, { field, value }) {
-      state.currentRow[field] = value;
+    actions: {
+
     },
-  },
+  }))
+);
 
-  actions: {
-
-  },
-});
+export default initStore;

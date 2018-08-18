@@ -7,9 +7,10 @@
       <!-- TODO: Change v-if to isLoggedIn -->
       <el-button
         v-if="isLoggedIn"
-        @click="toggleRowDialog({ isNewRow: true })"
+        @click="toggleRowDialog({ section, isNewRow: true })"
         :style="{ marginLeft: '1rem' }"
         icon="el-icon-plus"
+        size="small"
         circle
       />
     </div>
@@ -19,6 +20,7 @@
         :data="filteredRows"
         :show-header="false"
         row-class-name="row"
+        :row-style="getRowStyle"
         cell-class-name="cell"
       >
         <el-table-column v-if="hasColumn('left')" prop="left" width="130" />
@@ -46,6 +48,7 @@
             <el-button
               @click="toggleRowDialog({ index: scope.$index, rows: filteredRows })"
               icon="el-icon-edit"
+              size="small"
               circle
             />
           </template>
@@ -72,11 +75,9 @@ export default {
     ...mapState(['isLoggedIn']),
 
     filteredRows() {
-      return this.section.sectionRows
-        // .map(sr => {
-
-        // })
-        .filter(sr => !sr.hidden);
+      return this.isLoggedIn
+        ? this.section.sectionRows
+        : this.section.sectionRows.filter(sr => !sr.hidden);
     },
   },
 
@@ -85,6 +86,11 @@ export default {
 
     hasColumn(columnName) {
       return this.section.sectionRows.some(sr => sr[columnName]);
+    },
+
+    getRowStyle({ row }) {
+      const opacity = row.hidden ? '.3' : 'initial';
+      return { opacity };
     },
   },
 };
