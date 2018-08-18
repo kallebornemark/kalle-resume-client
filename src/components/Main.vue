@@ -1,36 +1,42 @@
 <template>
   <div class="main">
-      <div class="sidebar">
-        <portfolio-sidebar />
-      </div>
-
-      <div class="highlight">
-        <highlight-box>
-          <h2>Howdy!</h2>
-          <p>Kalle here. Welcome to my resume.</p>
-          <p>
-            I am a driven, meticulous and socially capable software developer constantly looking into new techniques and challenges.
-            Although I usually label myself as a full-stack developer, I've lately spent most of my time building front-ends.
-          </p>
-        </highlight-box>
-      </div>
-
-      <div class="sections">
-        <i v-if="!sections" class="el-icon-loading"></i>
-        <portfolio-section v-for="section in sections" :key="section.id" v-bind="{ section }"/>
-      </div>
+    <div class="sidebar">
+      <portfolio-sidebar />
     </div>
+
+    <div class="highlight">
+      <highlight-box>
+        <h2>Howdy!</h2>
+        <p>Kalle here. Welcome to my resume.</p>
+        <p>
+          I am a driven, meticulous and socially capable software developer constantly looking into new techniques and challenges.
+          Although I usually label myself as a full-stack developer, I've lately spent most of my time building front-ends.
+        </p>
+      </highlight-box>
+    </div>
+
+    <div class="sections">
+      <i v-if="!sections" class="el-icon-loading"></i>
+      <portfolio-section v-for="section in sections" :key="section.id" v-bind="{ section }"/>
+    </div>
+
+    <row-dialog />
+  </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 import Sidebar from '@/components/Sidebar/Sidebar.vue';
 import Section from '@/components/Section/Section.vue';
 import HighlightBox from '@/components/HighlightBox.vue';
+import RowDialog from './Dialogs/RowDialog.vue';
 
 export default {
   name: 'MainContainer',
   components: {
     HighlightBox,
+    RowDialog,
     'portfolio-sidebar': Sidebar,
     'portfolio-section': Section,
   },
@@ -41,12 +47,15 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState(['rowDialogIsVisible']),
+  },
+
   methods: {
+    ...mapMutations(['toggleSectionDialog', 'toggleRowDialog']),
+
     async getSections() {
-      const headers = {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      };
+      const headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
       const sections = await fetch(`${process.env.VUE_APP_API_URL}/api/Sections?filter[include]=sectionRows`, { headers });
       const sectionsJson = await sections.json();
       this.sections = sectionsJson;

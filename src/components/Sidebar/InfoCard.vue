@@ -30,10 +30,7 @@ export default {
 
   methods: {
     async getInfoCardItems() {
-      const headers = {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      };
+      const headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
       const items = await fetch(`${process.env.VUE_APP_API_URL}/api/InfoCardItems`, { headers });
       const itemsJson = await items.json();
       this.items = itemsJson;

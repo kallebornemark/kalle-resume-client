@@ -3,12 +3,25 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+const getInitialRow = () => ({
+  left: '',
+  main: '',
+  description: '',
+  right: '',
+  rightLinkURL: '',
+  hidden: '',
+});
+
 export default new Vuex.Store({
   state: {
     token: null,
     isLoggedIn: false,
-    addEntryDialogIsVisible: false,
+    sectionDialogIsVisible: false,
     currentSection: null,
+
+    rowDialogIsVisible: false,
+    currentRow: getInitialRow(),
+    isNewRow: true,
   },
 
   mutations: {
@@ -18,15 +31,16 @@ export default new Vuex.Store({
       newState.isLoggedIn = !!newState.token;
     },
 
-    openAddSectionDialog(state, section) {
-      const newState = state;
-      newState.addEntryDialogIsVisible = true;
-      newState.currentSection = section;
+    toggleRowDialog(state, { index, rows, isNewRow = false }) {
+      state.rowDialogIsVisible = !state.rowDialogIsVisible;
+      state.currentRow = index !== undefined && rows !== undefined
+        ? rows[index]
+        : getInitialRow();
+      state.isNewRow = isNewRow;
     },
 
-    closeAddSectionDialog(state) {
-      const newState = state;
-      newState.addEntryDialogIsVisible = false;
+    updateRow(state, { field, value }) {
+      state.currentRow[field] = value;
     },
   },
 

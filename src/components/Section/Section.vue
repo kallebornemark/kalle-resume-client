@@ -7,8 +7,7 @@
       <!-- TODO: Change v-if to isLoggedIn -->
       <el-button
         v-if="isLoggedIn"
-        :section="section"
-        @click="openAddSectionDialog(section)"
+        @click="toggleRowDialog({ isNewRow: true })"
         :style="{ marginLeft: '1rem' }"
         icon="el-icon-plus"
         circle
@@ -41,10 +40,18 @@
             </conditional-link>
           </template>
         </el-table-column>
+
+        <el-table-column v-if="isLoggedIn" align="right" width="80">
+          <template slot-scope="scope">
+            <el-button
+              @click="toggleRowDialog({ index: scope.$index, rows: filteredRows })"
+              icon="el-icon-edit"
+              circle
+            />
+          </template>
+        </el-table-column>
       </el-table>
     </div>
-
-    <add-entry-dialog />
   </div>
 </template>
 
@@ -52,13 +59,11 @@
 import { mapState, mapMutations } from 'vuex';
 import ConditionalLink from '@/components/ConditionalLink.vue';
 import Rectangle from './Rectangle.vue';
-import AddEntryDialog from './AddEntryDialog.vue';
 
 export default {
   name: 'Section',
   components: {
     ConditionalLink,
-    AddEntryDialog,
     'portfolio-rectangle': Rectangle,
   },
   props: ['section'],
@@ -67,12 +72,16 @@ export default {
     ...mapState(['isLoggedIn']),
 
     filteredRows() {
-      return this.section.sectionRows.filter(sr => !sr.hidden);
+      return this.section.sectionRows
+        // .map(sr => {
+
+        // })
+        .filter(sr => !sr.hidden);
     },
   },
 
   methods: {
-    ...mapMutations(['openAddSectionDialog']),
+    ...mapMutations(['toggleRowDialog']),
 
     hasColumn(columnName) {
       return this.section.sectionRows.some(sr => sr[columnName]);
