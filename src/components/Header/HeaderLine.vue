@@ -28,7 +28,7 @@ export default {
   }
 
   .shadow {
-    height: 7px;
+    height: 6px;
     background-color: $color-shadow;
     opacity: .5;
   }
