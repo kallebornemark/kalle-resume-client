@@ -13,7 +13,7 @@
 
     <div class="input-group">
       <span class="property-name">Main</span>
-      <el-input :value="currentRow.main" type="textarea" :rows="3" @input.native="handleUpdateRow('main', $event.target.value)" />
+      <el-input placeholder="Required" :value="currentRow.main" type="textarea" :rows="3" @input.native="handleUpdateRow('main', $event.target.value)" />
     </div>
 
     <div class="input-group">
@@ -48,9 +48,35 @@
     </div>
 
     <span slot="footer" class="dialog-footer">
-      <el-button type="danger" @click="remove" v-if="!isNewRow" icon="el-icon-delete" round>Delete row</el-button>
-      <el-button type="primary" @click="add" v-if="isNewRow" icon="el-icon-plus" round>Add row</el-button>
-      <el-button type="primary" @click="update" v-if="!isNewRow" icon="el-icon-check" round>Update row</el-button>
+      <el-button
+        type="danger"
+        @click="remove"
+        v-if="!isNewRow"
+        icon="el-icon-delete"
+        round
+      >
+        Delete row
+      </el-button>
+      <el-button
+        type="primary"
+        @click="add"
+        v-if="isNewRow"
+        icon="el-icon-plus"
+        :disabled="disableCreateAndUpdateButton"
+        round
+      >
+        Add row
+      </el-button>
+      <el-button
+        type="primary"
+        @click="update"
+        v-if="!isNewRow"
+        icon="el-icon-check"
+        :disabled="disableCreateAndUpdateButton"
+        round
+      >
+        Update row
+      </el-button>
     </span>
   </el-dialog>
 </template>
@@ -74,6 +100,10 @@ export default {
     hidden: {
       get() { return this.currentRow.hidden; },
       set() { this.updateRow({ field: 'hidden', value: !this.currentRow.hidden }); },
+    },
+
+    disableCreateAndUpdateButton() {
+      return !this.currentRow.main;
     },
   },
 
