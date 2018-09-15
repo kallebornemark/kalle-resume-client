@@ -8,7 +8,7 @@
 ## Todo
 
 - [X] Login with Vuex token
-- [ ] CRUD operations through UI
+- [X] CRUD operations through UI
 - [ ] Optimize responsiveness (table -> cards?)
 
 ## License
