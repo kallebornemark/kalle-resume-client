@@ -2,7 +2,7 @@
   <div class="header">
     <span class="name">Kalle Bornemark</span>
     <header-line />
-    <span class="subtitle">Developer</span>
+    <span class="subtitle">Web Developer</span>
 
     <login />
   </div>
@@ -39,18 +39,13 @@ export default {
   }
 
   .subtitle {
-    // color: darken($color-accent-faded, 18%);
     color: $color-primary;
-    opacity: .4;
-    // font-family: $font-secondary;
-    // font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    // eslint-disable-next-line
+    opacity: .3;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
-    // font-size: 1em;
-    letter-spacing: 5px;
-    font-weight: 600;
+    letter-spacing: 4px;
     text-transform: lowercase;
-    margin-top: .5rem;
+    margin-top: .55rem;
+    font-size: .95em;
   }
 }
 </style>

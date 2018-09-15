@@ -2,7 +2,7 @@
   <el-popover
     placement="left-start"
     width="200"
-    trigger="manual"
+    trigger="click"
     v-model="isVisible">
     <div class="login-dialog">
       <el-input

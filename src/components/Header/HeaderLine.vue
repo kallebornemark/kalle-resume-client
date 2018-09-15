@@ -16,8 +16,6 @@ export default {
 
 .container {
   width: 24.5rem;
-  margin-bottom: 4px;
-  position: relative;
 
   @media screen and (max-width: $screen-xs) {
     display: none;
@@ -30,15 +28,9 @@ export default {
   }
 
   .shadow {
-    padding: 0 5px 5px 5px;
-    position: absolute;
-    top: 3px;
-    bottom: 0;
-    left: 0;
-    right: -.39rem;
+    height: 7px;
     background-color: $color-shadow;
-    opacity: .6;
-    clip-path: polygon(0 0, calc(100% - .4rem) 0, 100% 100%, .4rem 100%);
+    opacity: .5;
   }
 }
 </style>

@@ -13,7 +13,13 @@
 
     <div class="input-group">
       <span class="property-name">Main</span>
-      <el-input placeholder="Required" :value="currentRow.main" type="textarea" :rows="3" @input.native="handleUpdateRow('main', $event.target.value)" />
+      <el-input
+        placeholder="Required"
+        :value="currentRow.main"
+        type="textarea"
+        :rows="3"
+        @input.native="handleUpdateRow('main', $event.target.value)"
+      />
     </div>
 
     <div class="input-group">
