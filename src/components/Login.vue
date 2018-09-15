@@ -54,7 +54,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['setToken']),
+    ...mapMutations(['setToken', 'logout']),
 
     togglePopover() {
       this.isVisible = !this.isVisible;
@@ -90,10 +90,6 @@ export default {
       } catch (e) {
         alert('Unsuccessful login');
       }
-    },
-
-    logout() {
-      this.setToken();
     },
   },
 };

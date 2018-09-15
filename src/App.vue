@@ -13,12 +13,21 @@ import Header from '@/components/Header/Header.vue';
 import Main from '@/components/Main.vue';
 import Footer from '@/components/Footer.vue';
 import '@/styles/styles.scss';
+import { mapMutations } from 'vuex';
 
 export default {
   components: {
     'portfolio-header': Header,
     'portfolio-main': Main,
     'portfolio-footer': Footer,
+  },
+
+  methods: {
+    ...mapMutations(['attemptToSetTokenFromLocalStorage']),
+  },
+
+  created() {
+    this.attemptToSetTokenFromLocalStorage();
   },
 };
 </script>

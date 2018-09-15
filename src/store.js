@@ -28,10 +28,26 @@ const initStore = () => (
     },
 
     mutations: {
+      attemptToSetTokenFromLocalStorage(state) {
+        const token = localStorage.getItem('token');
+        if (token) {
+          state.token = token;
+          state.isLoggedIn = true;
+        }
+      },
+
       setToken(state, token) {
         const newState = state;
         newState.token = token;
+        localStorage.setItem('token', token);
         newState.isLoggedIn = !!newState.token;
+      },
+
+      logout(state) {
+        debugger;
+        state.token = null;
+        state.isLoggedIn = false;
+        localStorage.removeItem('token');
       },
 
       toggleRowDialog(state, { section, index, rows, isNewRow = false }) {
