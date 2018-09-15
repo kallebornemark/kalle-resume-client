@@ -40,7 +40,7 @@ export default {
 
   .subtitle {
     color: $color-primary;
-    opacity: .3;
+    opacity: .45;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
     letter-spacing: 4px;
     text-transform: lowercase;
