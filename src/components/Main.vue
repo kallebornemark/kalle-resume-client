@@ -82,6 +82,7 @@ export default {
   grid-template-columns: 15.5rem auto;
   grid-column-gap: 1.5rem;
   grid-row-gap: 1.5rem;
+  min-height: 70vh;
 
   @media screen and (max-width: $screen-xs) {
     display: flex;

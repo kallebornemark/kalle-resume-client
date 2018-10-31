@@ -16,6 +16,7 @@ export default {
 
 .container {
   width: 24.5rem;
+  height: 0.6rem;
 
   @media screen and (max-width: $screen-xs) {
     display: none;
