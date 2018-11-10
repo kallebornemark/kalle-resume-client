@@ -24,7 +24,7 @@
         :row-style="getRowStyle"
         cell-class-name="cell"
       >
-        <el-table-column v-if="hasColumn(['category'])" prop="category" :width="getCategoryColumnWidth()">
+        <el-table-column v-if="hasColumn(['category'])" prop="category" :width="160">
           <template slot-scope="scope">
             <conditional-link :hasLink="!!scope.row.linkURL">
               <a slot="link" :href="scope.row.linkURL" target="_blank"></a>
@@ -119,15 +119,6 @@ export default {
     getRowStyle({ row }) {
       return { opacity: row.hidden ? '.3' : 'initial' };
     },
-
-    getCategoryColumnWidth() {
-      switch (this.$mq) {
-        case 'sm':
-          return 120;
-        default:
-          return 150;
-      }
-    },
   },
 };
 </script>
@@ -150,6 +141,10 @@ export default {
       font-size: 1.5em;
       font-family: $font-secondary;
       font-weight: bold;
+
+      @media screen and (max-width: $screen-sm) {
+        font-size: 1.7em;
+      }
     }
   }
 

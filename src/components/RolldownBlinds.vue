@@ -60,7 +60,7 @@ export default {
 
 .slide-down-enter-active {
   transition: height 0.4s cubic-bezier(0.455, 0.505, 0, 1.22);
-  transition-delay: 1s;
+  transition-delay: .7s;
 }
 .slide-down-enter {
   height: 0 !important;

@@ -83,7 +83,6 @@ export default {
     '. sections';
   grid-column-gap: 1.5rem;
   grid-row-gap: 1.5rem;
-  min-height: 70vh;
 
   @media screen and (max-width: $screen-md) {
     grid-template-areas:

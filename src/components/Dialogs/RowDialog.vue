@@ -7,35 +7,34 @@
     :before-close="toggleRowDialog">
 
     <div class="input-group">
-      <span class="property-name">Left</span>
-      <el-input :value="currentRow.left" @input.native="handleUpdateRow('left', $event.target.value)" />
+      <span class="property-name">Category</span>
+      <el-input :value="currentRow.category" type="textarea" :rows="3" @input.native="handleUpdateRow('category', $event.target.value)" autofocus/>
     </div>
 
     <div class="input-group">
-      <span class="property-name">Main</span>
-      <el-input
-        placeholder="Required"
-        :value="currentRow.main"
-        type="textarea"
-        :rows="3"
-        @input.native="handleUpdateRow('main', $event.target.value)"
-      />
+      <span class="property-name">Category URL</span>
+      <el-input :value="currentRow.linkURL" @input.native="handleUpdateRow('linkURL', $event.target.value)" />
+    </div>
+
+    <div class="input-group">
+      <span class="property-name">Content</span>
+      <el-input :value="currentRow.content" @input.native="handleUpdateRow('content', $event.target.value)" />
     </div>
 
     <div class="input-group">
       <span class="property-name">Description</span>
-      <el-input :value="currentRow.description" type="textarea" :rows="3" @input.native="handleUpdateRow('description', $event.target.value)"/>
+      <el-input :value="currentRow.description" type="textarea" :rows="3" @input.native="handleUpdateRow('description', $event.target.value)" />
     </div>
 
     <div class="input-group">
-      <span class="property-name">Right</span>
-      <el-input :value="currentRow.right" @input.native="handleUpdateRow('right', $event.target.value)" />
+      <span class="property-name">Timespan</span>
+      <el-input :value="currentRow.timespan" @input.native="handleUpdateRow('timespan', $event.target.value)" />
     </div>
 
-    <div class="input-group">
-      <span class="property-name">Right link URL</span>
-      <el-input :value="currentRow.rightLinkURL" @input.native="handleUpdateRow('rightLinkURL', $event.target.value)" />
-    </div>
+    <!-- <div class="input-group">
+      <span class="property-name">Link text</span>
+      <el-input :value="currentRow.linkText" @input.native="handleUpdateRow('linkText', $event.target.value)" />
+    </div> -->
 
     <!-- Commented out ATM, risky too use -->
     <!-- <div class="input-group">
@@ -63,22 +62,22 @@
       >
         Delete row
       </el-button>
+
       <el-button
         type="primary"
         @click="add"
         v-if="isNewRow"
         icon="el-icon-plus"
-        :disabled="disableCreateAndUpdateButton"
         round
       >
         Add row
       </el-button>
+
       <el-button
         type="primary"
         @click="update"
         v-if="!isNewRow"
         icon="el-icon-check"
-        :disabled="disableCreateAndUpdateButton"
         round
       >
         Update row
@@ -106,10 +105,6 @@ export default {
     hidden: {
       get() { return this.currentRow.hidden; },
       set() { this.updateRow({ field: 'hidden', value: !this.currentRow.hidden }); },
-    },
-
-    disableCreateAndUpdateButton() {
-      return !this.currentRow.main;
     },
   },
 
@@ -160,14 +155,18 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '~@/styles/vars.scss';
 
 .row-dialog {
   .input-group {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
     margin-bottom: 1rem;
+
+    @media screen and (max-width: $screen-xs) {
+      grid-template-columns: 1fr;
+    }
 
     .property-name {
       display: flex;
@@ -176,7 +175,21 @@ export default {
       width: 6.5rem;
       margin-right: $spacing-sm;
       font-weight: bold;
+
+      @media screen and (max-width: $screen-xs) {
+        justify-content: flex-start;
+        width: 100%;
+        margin-bottom: $spacing-xs;
+      }
     }
+  }
+}
+
+.el-dialog {
+  max-width: calc(100vw - 1rem);
+
+  @media screen and (max-width: $screen-xs) {
+    margin: .5rem auto !important;
   }
 }
 

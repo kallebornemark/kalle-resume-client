@@ -4,11 +4,12 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const getInitialRow = () => ({
-  left: '',
-  main: '',
-  description: '',
-  right: '',
-  rightLinkURL: '',
+  category: null,
+  content: null,
+  description: null,
+  timespan: null,
+  linkText: null,
+  linkURL: null,
   hidden: false,
 });
 
