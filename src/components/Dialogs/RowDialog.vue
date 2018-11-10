@@ -58,6 +58,7 @@
         @click="remove"
         v-if="!isNewRow"
         icon="el-icon-delete"
+        size="small"
         round
       >
         Delete row
@@ -68,6 +69,7 @@
         @click="add"
         v-if="isNewRow"
         icon="el-icon-plus"
+        size="small"
         round
       >
         Add row
@@ -78,6 +80,7 @@
         @click="update"
         v-if="!isNewRow"
         icon="el-icon-check"
+        size="small"
         round
       >
         Update row
@@ -190,6 +193,14 @@ export default {
 
   @media screen and (max-width: $screen-xs) {
     margin: .5rem auto !important;
+  }
+
+  .el-dialog__footer > .dialog-footer {
+    @media screen and (max-width: $screen-xs) {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 }
 

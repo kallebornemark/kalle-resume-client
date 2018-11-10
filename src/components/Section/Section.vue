@@ -80,6 +80,13 @@
           <span v-html="row.description" />
         </div>
 
+        <el-button
+          @click="toggleRowDialog({ index: i, rows: filteredRows })"
+          icon="el-icon-edit"
+          size="small"
+          circle
+        />
+
         <hr v-if="i !== filteredRows.length - 1">
       </div>
     </mq-layout>
@@ -163,6 +170,11 @@ export default {
       margin-top: 0;
       margin-bottom: .5rem;
       color: $color-primary;
+    }
+
+    /* Edit row button */
+    button {
+      margin-top: $spacing-xs;
     }
 
     .category-mobile {
