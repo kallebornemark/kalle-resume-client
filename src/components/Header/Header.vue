@@ -32,8 +32,11 @@ export default {
 
   .name {
     margin-top: 5rem;
-    color: $color-athens-gray;
-    font-size: 2.2em;
+    margin-bottoM: 1.3rem;
+    color: $color-primary;
+    font-size: 2.8em;
+    font-family: $font-primary;
+    font-weight: 400;
   }
 }
 

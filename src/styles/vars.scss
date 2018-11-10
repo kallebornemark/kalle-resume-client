@@ -7,6 +7,7 @@ $font-secondary: 'Raleway', sans-serif;
 // Colors
 $color-background: #f9f9f973;
 $color-primary: #656565;
+$color-primary-faded: #00000054;
 $color-accent: #ec8677;
 $color-accent-faded: transparentize($color-accent, .5);
 $color-secondary: #2DA0AF;
@@ -28,4 +29,4 @@ $spacing-md: 2.5rem;
 $spacing-lg: 3.5rem;
 
 // Other
-$border-radius-default: 4px;
+$border-radius-default: 3px;
