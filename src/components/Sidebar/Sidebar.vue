@@ -17,9 +17,11 @@ export default {
 @import '~@/styles/vars.scss';
 
 .sidebar {
+  position: absolute;
   min-width: 15.5rem;
 
   @media screen and (max-width: $screen-md) {
+    position: initial;
     width: 100%;
     margin-right: 0;
   }

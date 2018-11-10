@@ -24,11 +24,15 @@ export default {
 @import '~@/styles/vars.scss';
 
 .header {
-  height: 12rem;
+  min-height: 13rem;
   display: flex;
   flex-direction: column;
   text-align: center;
   margin-bottom: 6rem;
+
+  @media screen and (max-width: 366px) {
+    min-height: 17rem;
+  }
 
   .name {
     margin-top: 5rem;

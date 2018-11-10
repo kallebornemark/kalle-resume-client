@@ -15,7 +15,8 @@
       />
     </div>
 
-    <div class="table">
+    <!-- Desktop layout -->
+    <mq-layout mq="md+">
       <el-table
         :data="filteredRows"
         :show-header="false"
@@ -23,23 +24,26 @@
         :row-style="getRowStyle"
         cell-class-name="cell"
       >
-        <el-table-column v-if="hasColumn('left')" prop="left" width="130" />
-
-        <el-table-column v-if="hasColumn('main')" prop="main">
+        <el-table-column v-if="hasColumn(['category'])" prop="category" :width="getCategoryColumnWidth()">
           <template slot-scope="scope">
-            <span v-html="scope.row.main" />
-            <div v-if="scope.row.description" class="description">
-              {{ scope.row.description }}
+            <conditional-link :hasLink="!!scope.row.linkURL">
+              <a slot="link" :href="scope.row.linkURL" target="_blank"></a>
+              <span slot="text">{{ scope.row.category }}</span>
+            </conditional-link>
+          </template>
+        </el-table-column>
+
+        <el-table-column v-if="hasColumn(['content', 'description'])" prop="content">
+          <template slot-scope="scope">
+            <span v-html="scope.row.content" />
+            <div v-if="scope.row.description" class="description" v-html="scope.row.description">
             </div>
           </template>
         </el-table-column>
 
-        <el-table-column v-if="hasColumn('right')" align="right" width="150">
+        <el-table-column v-if="hasColumn(['timespan'])" align="right" width="150">
           <template slot-scope="scope">
-            <conditional-link :hasLink="!!scope.row.rightLinkURL">
-              <a slot="link" :href="scope.row.rightLinkURL" target="_blank"></a>
-              <span slot="text">{{ scope.row.right }}</span>
-            </conditional-link>
+            <span>{{ scope.row.timespan }}</span>
           </template>
         </el-table-column>
 
@@ -54,7 +58,31 @@
           </template>
         </el-table-column>
       </el-table>
-    </div>
+    </mq-layout>
+
+    <!-- Mobile layout -->
+    <mq-layout :mq="['xs', 'sm']" class="section-mobile">
+      <div v-for="(row, i) in filteredRows" :key="row.id" class="row-mobile">
+        <div class="category-mobile">
+          <h4>
+            <conditional-link :hasLink="!!row.linkURL">
+              <a slot="link" :href="row.linkURL" target="_blank"></a>
+              <span slot="text">{{ row.category }}</span>
+            </conditional-link>
+          </h4>
+          <span>{{ row.timespan }}</span>
+        </div>
+
+        <div class="content-mobile" v-if="row.content">
+          <span v-html="row.content" />
+        </div>
+        <div class="description-mobile">
+          <span v-html="row.description" />
+        </div>
+
+        <hr v-if="i !== filteredRows.length - 1">
+      </div>
+    </mq-layout>
   </div>
 </template>
 
@@ -84,13 +112,21 @@ export default {
   methods: {
     ...mapMutations(['toggleRowDialog']),
 
-    hasColumn(columnName) {
-      return this.section.sectionRows.some(sr => sr[columnName]);
+    hasColumn(columnNames) {
+      return this.section.sectionRows.some(sr => columnNames.some(cn => sr[cn]));
     },
 
     getRowStyle({ row }) {
-      const opacity = row.hidden ? '.3' : 'initial';
-      return { opacity };
+      return { opacity: row.hidden ? '.3' : 'initial' };
+    },
+
+    getCategoryColumnWidth() {
+      switch (this.$mq) {
+        case 'sm':
+          return 120;
+        default:
+          return 150;
+      }
     },
   },
 };
@@ -106,6 +142,10 @@ export default {
     align-items: center;
     margin-bottom: .7rem;
 
+    @media screen and (max-width: $screen-sm) {
+      margin-bottom: 1.6rem;
+    }
+
     .name {
       font-size: 1.5em;
       font-family: $font-secondary;
@@ -117,6 +157,44 @@ export default {
     color: transparentize($color: $color-primary, $amount: .4);
   }
 }
+
 .row { background-color: $color-background !important; }
 .cell { word-break: break-word !important; vertical-align: top !important; }
+
+.section-mobile {
+  .row-mobile {
+    h4 {
+      font-size: 15px;
+      margin-top: 0;
+      margin-bottom: .5rem;
+      color: $color-primary;
+    }
+
+    .category-mobile {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .content-mobile {
+      margin-bottom: $spacing-xs;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .description-mobile {
+      color: transparentize($color: $color-primary, $amount: .35);
+      font-size: 14px;
+    }
+
+    .content-mobile, .description-mobile {
+      line-height: 1.4rem;
+    }
+  }
+
+  hr {
+    margin: 1.5rem 0;
+    opacity: .15;
+  }
+}
 </style>

@@ -1,12 +1,12 @@
 <template>
   <div class="main">
-    <div class="sidebar">
+    <div class="sidebar-container">
       <portfolio-sidebar />
     </div>
 
     <div class="introduction">
       <highlight-box>
-        <h2>Howdy!</h2>
+        <h2>Hello! 👋</h2>
         <p>Kalle here. Welcome to my resume.</p>
         <p>
           I am a driven, meticulous and socially capable software developer constantly looking into new techniques and challenges.
@@ -80,25 +80,35 @@ export default {
   display: grid;
   grid-template-areas:
     'sidebar introduction'
-    'sections sections';
+    '. sections';
   grid-column-gap: 1.5rem;
   grid-row-gap: 1.5rem;
   min-height: 70vh;
 
-  @media screen and (max-width: $screen-xs) {
+  @media screen and (max-width: $screen-md) {
+    grid-template-areas:
+      'sidebar introduction'
+      'sections sections';
+  }
+
+  @media screen and (max-width: $screen-sm) {
     grid-template-areas:
       'introduction'
       'sidebar'
       'sections';
   }
 
-  .sidebar {
+  .sidebar-container {
+    position: relative;
     grid-area: sidebar;
     width: 15.5rem;
 
-    @media screen and (max-width: $screen-xs) {
-      width: 100%;
+    @media screen and (max-width: $screen-md) {
       margin-bottom: 1rem;
+    }
+
+    @media screen and (max-width: $screen-sm) {
+      width: 100%;
     }
   }
 
@@ -109,9 +119,6 @@ export default {
       margin: 0 0 1.5rem 0;
       font-size: 1.4em;
     }
-
-    @media screen and (max-width: $screen-sm) {
-    }
   }
 
   .sections {
@@ -119,6 +126,10 @@ export default {
 
     > :not(:last-child) {
       margin-bottom: 2.2rem;
+
+      @media screen and (max-width: $screen-sm) {
+        margin-bottom: 2.9rem;
+      }
     }
   }
 }

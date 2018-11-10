@@ -44,7 +44,6 @@ const initStore = () => (
       },
 
       logout(state) {
-        debugger;
         state.token = null;
         state.isLoggedIn = false;
         localStorage.removeItem('token');

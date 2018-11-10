@@ -17,5 +17,6 @@ export default {
   text-align: center;
   margin: 5rem 0 2rem 0;
   font-size: .8em;
+  opacity: .3;
 }
 </style>

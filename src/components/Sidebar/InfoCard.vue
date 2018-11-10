@@ -57,7 +57,7 @@ export default {
     width: 100%;
     cursor: pointer;
 
-    @media screen and (max-width: $screen-xs) {
+    @media screen and (max-width: $screen-md) {
       object-fit: cover;
       height: 14rem;
     }

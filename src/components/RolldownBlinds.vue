@@ -35,27 +35,24 @@ export default {
 
   .shadow {
     position: relative;
-    background-image: linear-gradient(
-      to right,
-      lighten(lightgray, 13.5%),
-      lighten(lightgray, 12%)
-    );
-    opacity: .5;
+    background-color: white;
     height: 2.9rem;
     margin: 0 1px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     overflow: hidden;
+    border: 1px solid transparentize($color: $color-border, $amount: 0.2);
+    border-top: none;
   }
 
   .subtitle {
     position: absolute;
     left: 0; right: 0; bottom: 33%;
-    color: darken($color-primary, 30%);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
-    letter-spacing: 2.5px;
+    color: lighten($color-primary, 15%);
+    font-family: $font-secondary;
+    letter-spacing: 2.3px;
     text-transform: lowercase;
-    font-size: .95em;
+    font-size: .90em;
     font-weight: 400;
     margin: 0;
   }
@@ -63,8 +60,7 @@ export default {
 
 .slide-down-enter-active {
   transition: height 0.4s cubic-bezier(0.455, 0.505, 0, 1.22);
-  /* transition: height 0.4s cubic-bezier(0.335, 0.715, 0.075, 1.160);; */
-  transition-delay: 0.65s;
+  transition-delay: 1s;
 }
 .slide-down-enter {
   height: 0 !important;
