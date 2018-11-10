@@ -81,6 +81,7 @@
         </div>
 
         <el-button
+          v-if="isLoggedIn"
           @click="toggleRowDialog({ index: i, rows: filteredRows })"
           icon="el-icon-edit"
           size="small"
