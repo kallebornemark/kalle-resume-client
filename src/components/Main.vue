@@ -4,7 +4,7 @@
       <portfolio-sidebar />
     </div>
 
-    <div class="highlight">
+    <div class="introduction">
       <highlight-box>
         <h2>Howdy!</h2>
         <p>Kalle here. Welcome to my resume.</p>
@@ -77,38 +77,33 @@ export default {
 @import '~@/styles/vars.scss';
 
 .main {
-  position: relative;
   display: grid;
-  grid-template-columns: 15.5rem auto;
+  grid-template-areas:
+    'sidebar introduction'
+    'sections sections';
   grid-column-gap: 1.5rem;
   grid-row-gap: 1.5rem;
   min-height: 70vh;
 
   @media screen and (max-width: $screen-xs) {
-    display: flex;
-    flex-direction: column;
+    grid-template-areas:
+      'introduction'
+      'sidebar'
+      'sections';
   }
 
   .sidebar {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
+    grid-area: sidebar;
     width: 15.5rem;
 
-    @media screen and (max-width: $screen-sm) {
-      position: initial;
-    }
-
-    @media screen and (max-width: $screen-sm) {
+    @media screen and (max-width: $screen-xs) {
       width: 100%;
       margin-bottom: 1rem;
     }
   }
 
-  .highlight {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
+  .introduction {
+    grid-area: introduction;
 
     h2 {
       margin: 0 0 1.5rem 0;
@@ -116,21 +111,11 @@ export default {
     }
 
     @media screen and (max-width: $screen-sm) {
-      margin-bottom: 1rem;
     }
   }
 
   .sections {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-
-    @media screen and (max-width: $screen-sm) {
-      grid-column: 1 / 3;
-    }
-
-    @media screen and (max-width: $screen-xs) {
-      margin-top: 1rem;
-    }
+    grid-area: sections;
 
     > :not(:last-child) {
       margin-bottom: 2.2rem;

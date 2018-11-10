@@ -56,6 +56,11 @@ export default {
   .image {
     width: 100%;
     cursor: pointer;
+
+    @media screen and (max-width: $screen-xs) {
+      object-fit: cover;
+      height: 14rem;
+    }
   }
   .items {
     padding: 1rem;
