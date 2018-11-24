@@ -74,8 +74,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~@/styles/vars.scss';
-
 .main {
   display: grid;
   grid-template-areas:

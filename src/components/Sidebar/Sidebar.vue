@@ -14,8 +14,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~@/styles/vars.scss';
-
 .sidebar {
   position: absolute;
   min-width: 15.5rem;

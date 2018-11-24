@@ -12,8 +12,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~@/styles/vars.scss';
-
 .container {
   width: 24.5rem;
   height: 0.6rem;

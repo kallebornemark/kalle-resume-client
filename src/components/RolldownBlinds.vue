@@ -17,9 +17,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~@/styles/vars.scss';
-@import '~@/styles/mixins.scss';
-
 .rolldown-blinds {
   width: 11.6rem;
   margin: 0 auto;

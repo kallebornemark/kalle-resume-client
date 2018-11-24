@@ -1,0 +1,7 @@
+@mixin shadow-blurry() {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+@mixin border-standard() {
+  border: 1px solid $color-border;
+}

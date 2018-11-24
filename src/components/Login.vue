@@ -96,8 +96,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~@/styles/vars.scss';
-
 .login-trigger {
   position: absolute;
   right: $spacing-sm;

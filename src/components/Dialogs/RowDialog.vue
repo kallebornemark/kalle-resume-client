@@ -165,8 +165,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~@/styles/vars.scss';
-
 .row-dialog {
   .input-group {
     display: grid;

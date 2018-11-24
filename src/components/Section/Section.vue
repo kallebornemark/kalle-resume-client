@@ -132,8 +132,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~@/styles/vars.scss';
-
 .section {
   .heading {
     display: flex;

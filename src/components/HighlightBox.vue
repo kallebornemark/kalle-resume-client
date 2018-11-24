@@ -11,9 +11,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~@/styles/vars.scss';
-@import '~@/styles/mixins.scss';
-
 .highlightBox {
   color: $color-accent-faded;
   background-color: white;

@@ -11,8 +11,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~@/styles/vars.scss';
-
 .rectangle {
   font-size: 1.5em;
   color: darken($color-accent-faded, 4%);

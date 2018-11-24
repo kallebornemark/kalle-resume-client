@@ -44,9 +44,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~@/styles/vars.scss';
-@import '~@/styles/mixins.scss';
-
 .info-card {
   width: 100%;
   font-size: .9em;

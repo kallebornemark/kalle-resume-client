@@ -20,8 +20,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~@/styles/vars.scss';
-
 .header {
   min-height: 13rem;
   display: flex;

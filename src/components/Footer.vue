@@ -11,8 +11,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~@/styles/vars.scss';
-
 .footer {
   text-align: center;
   margin: 5rem 0 2rem 0;
