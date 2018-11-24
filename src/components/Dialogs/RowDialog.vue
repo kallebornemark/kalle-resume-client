@@ -8,7 +8,13 @@
 
     <div class="input-group">
       <span class="property-name">Category</span>
-      <el-input :value="currentRow.category" type="textarea" :rows="3" @input.native="handleUpdateRow('category', $event.target.value)" autofocus/>
+      <el-input
+        :value="currentRow.category"
+        type="textarea"
+        :rows="3"
+        @input.native="handleUpdateRow('category', $event.target.value)"
+        autofocus
+      />
     </div>
 
     <div class="input-group">
@@ -36,7 +42,7 @@
       <el-input :value="currentRow.linkText" @input.native="handleUpdateRow('linkText', $event.target.value)" />
     </div> -->
 
-    <!-- Commented out ATM, risky too use -->
+    <!-- Commented out ATM, risky to use -->
     <!-- <div class="input-group">
       <span class="property-name">ID</span>
       <el-input-number :value="currentRow.id" @change="handleUpdateRow('id', $event)" />

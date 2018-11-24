@@ -43,7 +43,7 @@ export default {
     overflow: hidden;
     border: 1px solid transparentize($color: $color-border, $amount: 0.2);
     border-top: none;
-    box-shadow: 0px 2px 7px #e4e4e4;
+    box-shadow: 0px 2px 7px #eaeaea;
   }
 
   .label {
