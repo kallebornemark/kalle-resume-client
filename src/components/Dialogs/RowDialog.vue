@@ -54,17 +54,6 @@
 
     <span slot="footer" class="dialog-footer">
       <el-button
-        type="danger"
-        @click="remove"
-        v-if="!isNewRow"
-        icon="el-icon-delete"
-        size="small"
-        round
-      >
-        Delete row
-      </el-button>
-
-      <el-button
         type="primary"
         @click="add"
         v-if="isNewRow"
@@ -84,6 +73,17 @@
         round
       >
         Update row
+      </el-button>
+
+      <el-button
+        type="danger"
+        @click="remove"
+        v-if="!isNewRow"
+        icon="el-icon-delete"
+        size="small"
+        round
+      >
+        Delete row
       </el-button>
     </span>
   </el-dialog>
@@ -164,7 +164,7 @@ export default {
 .row-dialog {
   .input-group {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 8rem 4fr;
     margin-bottom: 1rem;
 
     @media screen and (max-width: $screen-xs) {
@@ -195,11 +195,16 @@ export default {
     margin: .5rem auto !important;
   }
 
-  .el-dialog__footer > .dialog-footer {
+  .el-button {
     @media screen and (max-width: $screen-xs) {
-      display: flex;
       width: 100%;
-      justify-content: space-between;
+      height: 3rem;
+      font-size: 1.1em;
+      margin: 0;
+
+      &:not(:last-child) {
+        margin-bottom: $spacing-sm;
+      }
     }
   }
 }
