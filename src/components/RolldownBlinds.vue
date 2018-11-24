@@ -3,8 +3,8 @@
       <div class="line" />
 
       <transition name="slide-down" appear>
-        <div class="shadow">
-          <h4 class="subtitle">{{text}}</h4>
+        <div class="flag">
+          <h4 class="label">{{text}}</h4>
         </div>
       </transition>
     </div>
@@ -33,7 +33,7 @@ export default {
     border-radius: 1px;
   }
 
-  .shadow {
+  .flag {
     position: relative;
     background-color: white;
     height: 2.9rem;
@@ -43,12 +43,13 @@ export default {
     overflow: hidden;
     border: 1px solid transparentize($color: $color-border, $amount: 0.2);
     border-top: none;
+    box-shadow: 0px 2px 7px #e4e4e4;
   }
 
-  .subtitle {
+  .label {
     position: absolute;
     left: 0; right: 0; bottom: 33%;
-    color: lighten($color-primary, 15%);
+    color: lighten($color-primary, 10%);
     font-family: $font-secondary;
     letter-spacing: 2.3px;
     text-transform: lowercase;
