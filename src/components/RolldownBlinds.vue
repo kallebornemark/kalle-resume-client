@@ -18,6 +18,7 @@ export default {
 
 <style lang="scss">
 @import '~@/styles/vars.scss';
+@import '~@/styles/mixins.scss';
 
 .rolldown-blinds {
   width: 11.6rem;
@@ -41,9 +42,10 @@ export default {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     overflow: hidden;
-    border: 1px solid transparentize($color: $color-border, $amount: 0.2);
+    /* border: 1px solid transparentize($color: $color-border, $amount: 0.2); */
+    @include border-standard;
     border-top: none;
-    box-shadow: 0px 2px 7px #eaeaea;
+    @include shadow-blurry;
   }
 
   .label {

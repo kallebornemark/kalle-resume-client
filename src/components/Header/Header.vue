@@ -19,7 +19,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import '~@/styles/vars.scss';
 
@@ -34,6 +33,11 @@ export default {
     min-height: 17rem;
   }
 
+  @media screen and (max-width: $screen-xs) {
+    height: 70vh;
+    margin-bottom: 0;
+  }
+
   .name {
     margin-top: 5rem;
     margin-bottoM: 1.3rem;
@@ -41,6 +45,10 @@ export default {
     font-size: 2.8em;
     font-family: $font-primary;
     font-weight: 400;
+
+    @media screen and (max-width: $screen-xs) {
+      margin-top: 25vh;
+    }
   }
 }
 

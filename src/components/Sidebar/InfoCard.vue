@@ -45,13 +45,16 @@ export default {
 
 <style scoped lang="scss">
 @import '~@/styles/vars.scss';
+@import '~@/styles/mixins.scss';
 
 .info-card {
   width: 100%;
   font-size: .9em;
   border-radius: $border-radius-default;
-  border: 1px solid $color-border;
+  /* border: 1px solid $color-border; */
   background-color: white;
+  @include border-standard;
+  @include shadow-blurry;
 
   .image {
     width: 100%;

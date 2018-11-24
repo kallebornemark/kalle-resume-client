@@ -81,8 +81,8 @@ export default {
   grid-template-areas:
     'sidebar introduction'
     '. sections';
-  grid-column-gap: 1.5rem;
-  grid-row-gap: 1.5rem;
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
 
   @media screen and (max-width: $screen-md) {
     grid-template-areas:

@@ -12,15 +12,17 @@ export default {
 
 <style scoped lang="scss">
 @import '~@/styles/vars.scss';
+@import '~@/styles/mixins.scss';
 
 .highlightBox {
   color: $color-accent-faded;
   background-color: white;
   padding: 1rem;
-  border: 1px solid $color-border;
-  border-top: 1rem solid $color-accent-faded;
   border-radius: $border-radius-default;
   color: $color-primary;
+  @include border-standard;
+  border-top: 1rem solid $color-accent-faded;
+  @include shadow-blurry;
 
   h1 {
     font-size: 1.4em;

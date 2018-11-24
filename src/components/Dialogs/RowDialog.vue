@@ -202,6 +202,11 @@ export default {
   }
 
   .el-button {
+     @media screen and (max-width: $screen-sm) {
+      height: 2.5rem;
+      font-size: .9em;
+    }
+
     @media screen and (max-width: $screen-xs) {
       width: 100%;
       height: 3rem;
