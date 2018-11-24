@@ -9,7 +9,7 @@
 
 - [X] Login with Vuex token
 - [X] CRUD operations through UI
-- [ ] Optimize responsiveness (table -> cards?)
+- [X] Optimize responsiveness (table -> cards?)
 
 ## License
 
