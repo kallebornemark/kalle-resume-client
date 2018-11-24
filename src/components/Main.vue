@@ -31,6 +31,7 @@ import Sidebar from '@/components/Sidebar/Sidebar.vue';
 import Section from '@/components/Section/Section.vue';
 import HighlightBox from '@/components/HighlightBox.vue';
 import RowDialog from './Dialogs/RowDialog.vue';
+import API from '@/api';
 
 export default {
   name: 'MainContainer',
@@ -55,10 +56,7 @@ export default {
     ...mapMutations(['toggleSectionDialog', 'toggleRowDialog']),
 
     async getSections() {
-      const headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
-      const sections = await fetch(`${process.env.VUE_APP_API_URL}/api/Sections?filter[include]=sectionRows`, { headers });
-      const sectionsJson = await sections.json();
-      this.sections = sectionsJson;
+      this.sections = await API.getJson('/api/Sections?filter[include]=sectionRows');
     },
 
     reloadData() {

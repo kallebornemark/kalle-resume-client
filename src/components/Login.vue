@@ -33,6 +33,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
+import API from '@/api';
 
 export default {
   name: 'LoginTrigger',
@@ -67,29 +68,21 @@ export default {
     },
 
     async login() {
-      const headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
-      const body = JSON.stringify({
-        username: this.username,
-        password: this.password,
-      });
+      const response = await API.postJson(
+        '/api/Users/login',
+        JSON.stringify({
+          username: this.username,
+          password: this.password,
+        }),
+      );
 
-      try {
-        const user = await fetch(`${process.env.VUE_APP_API_URL}/api/Users/login`, {
-          method: 'POST',
-          headers,
-          body,
-        });
-        const userJson = await user.json();
-
-        if (userJson.error) {
-          alert(userJson.error.message);
-        } else {
-          this.setToken(userJson.id);
-          this.resetPopover();
-        }
-      } catch (e) {
-        alert('Unsuccessful login');
+      if (response.error) {
+        alert('Unsuccessful login!');
+        return;
       }
+
+      this.setToken(response.id);
+      this.resetPopover();
     },
   },
 };

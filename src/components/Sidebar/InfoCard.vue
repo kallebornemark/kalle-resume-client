@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import API from '@/api';
+
 export default {
   name: 'InfoCard',
 
@@ -30,10 +32,7 @@ export default {
 
   methods: {
     async getInfoCardItems() {
-      const headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
-      const items = await fetch(`${process.env.VUE_APP_API_URL}/api/InfoCardItems`, { headers });
-      const itemsJson = await items.json();
-      this.items = itemsJson;
+      this.items = await API.getJson('/api/InfoCardItems');
     },
 
     openLink(url) {
@@ -48,7 +47,6 @@ export default {
   width: 100%;
   font-size: .9em;
   border-radius: $border-radius-default;
-  /* border: 1px solid $color-border; */
   background-color: white;
   @include border-standard;
   @include shadow-blurry;
