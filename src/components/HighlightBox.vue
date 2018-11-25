@@ -1,13 +1,11 @@
 <template>
-  <div class="highlightBox">
-    <slot />
-  </div>
+  <div class="highlightBox"><slot /></div>
 </template>
 
 <script>
 export default {
   name: 'HighlightBox',
-};
+}
 </script>
 
 <style scoped lang="scss">

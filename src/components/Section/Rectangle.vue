@@ -1,13 +1,11 @@
 <template>
-  <div class="rectangle">
-    ▰
-  </div>
+  <div class="rectangle">▰</div>
 </template>
 
 <script>
 export default {
   name: 'Rectangle',
-};
+}
 </script>
 
 <style scoped lang="scss">

@@ -1,37 +1,41 @@
 <template>
   <div class="main">
-    <div class="sidebar-container">
-      <portfolio-sidebar />
-    </div>
+    <div class="sidebar-container"><portfolio-sidebar /></div>
 
     <div class="introduction">
       <highlight-box>
         <h2>Hello! 👋</h2>
         <p>Kalle here. Welcome to my resume.</p>
         <p>
-          I am a driven, meticulous and socially capable software developer constantly looking into new techniques and challenges.
-          Although I usually label myself as a full-stack developer, I've lately spent most of my time building front-ends.
+          I am a driven, meticulous and socially capable software developer
+          constantly looking into new techniques and challenges. Although I
+          usually label myself as a full-stack developer, I've lately spent most
+          of my time building front-ends.
         </p>
       </highlight-box>
     </div>
 
     <div class="sections">
-      <i v-if="!sections" class="el-icon-loading"></i>
-      <portfolio-section v-for="section in sections" :key="section.id" v-bind="{ section }"/>
+      <i v-if="!sections" class="el-icon-loading" />
+      <portfolio-section
+        v-for="section in sections"
+        :key="section.id"
+        v-bind="{ section }"
+      />
     </div>
 
-    <row-dialog :reload-data="reloadData"/>
+    <row-dialog :reload-data="reloadData" />
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex'
 
-import Sidebar from '@/components/Sidebar/Sidebar.vue';
-import Section from '@/components/Section/Section.vue';
-import HighlightBox from '@/components/HighlightBox.vue';
-import RowDialog from './Dialogs/RowDialog.vue';
-import API from '@/api';
+import Sidebar from '@/components/Sidebar/Sidebar.vue'
+import Section from '@/components/Section/Section.vue'
+import HighlightBox from '@/components/HighlightBox.vue'
+import API from '@/api'
+import RowDialog from './Dialogs/RowDialog.vue'
 
 export default {
   name: 'MainContainer',
@@ -45,7 +49,7 @@ export default {
   data() {
     return {
       sections: null,
-    };
+    }
   },
 
   computed: {
@@ -56,19 +60,21 @@ export default {
     ...mapMutations(['toggleSectionDialog', 'toggleRowDialog']),
 
     async getSections() {
-      this.sections = await API.getJson('/api/Sections?filter[include]=sectionRows');
+      this.sections = await API.getJson(
+        '/api/Sections?filter[include]=sectionRows'
+      )
     },
 
     reloadData() {
-      this.section = null;
-      this.getSections();
+      this.section = null
+      this.getSections()
     },
   },
 
   mounted() {
-    this.getSections();
+    this.getSections()
   },
-};
+}
 </script>
 
 <style scoped lang="scss">

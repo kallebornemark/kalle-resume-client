@@ -1,19 +1,19 @@
 <template>
   <div class="rolldown-blinds">
-      <div class="line" />
+    <div class="line" />
 
-      <transition name="slide-down" appear>
-        <div class="flag">
-          <h4 class="label">{{text}}</h4>
-        </div>
-      </transition>
-    </div>
+    <transition name="slide-down" appear>
+      <div class="flag">
+        <h4 class="label">{{ text }}</h4>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
 export default {
   props: ['text'],
-};
+}
 </script>
 
 <style lang="scss">
@@ -47,12 +47,14 @@ export default {
 
   .label {
     position: absolute;
-    left: 0; right: 0; bottom: 33%;
+    left: 0;
+    right: 0;
+    bottom: 33%;
     color: lighten($color-primary, 10%);
     font-family: $font-secondary;
     letter-spacing: 2.3px;
     text-transform: lowercase;
-    font-size: .90em;
+    font-size: 0.9em;
     font-weight: 400;
     margin: 0;
   }
@@ -60,7 +62,7 @@ export default {
 
 .slide-down-enter-active {
   transition: height 0.4s cubic-bezier(0.455, 0.505, 0, 1.22);
-  transition-delay: .7s;
+  transition-delay: 0.7s;
 }
 .slide-down-enter {
   height: 0 !important;

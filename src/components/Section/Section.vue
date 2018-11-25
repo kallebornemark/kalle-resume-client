@@ -24,7 +24,11 @@
         :row-style="getRowStyle"
         cell-class-name="cell"
       >
-        <el-table-column v-if="hasColumn(['category'])" prop="category" :width="160">
+        <el-table-column
+          v-if="hasColumn(['category'])"
+          prop="category"
+          :width="160"
+        >
           <template slot-scope="scope">
             <conditional-link :hasLink="!!scope.row.linkURL">
               <a slot="link" :href="scope.row.linkURL" target="_blank"></a>
@@ -33,15 +37,25 @@
           </template>
         </el-table-column>
 
-        <el-table-column v-if="hasColumn(['content', 'description'])" prop="content">
+        <el-table-column
+          v-if="hasColumn(['content', 'description'])"
+          prop="content"
+        >
           <template slot-scope="scope">
             <span v-html="scope.row.content" />
-            <div v-if="scope.row.description" class="description" v-html="scope.row.description">
-            </div>
+            <div
+              v-if="scope.row.description"
+              class="description"
+              v-html="scope.row.description"
+            ></div>
           </template>
         </el-table-column>
 
-        <el-table-column v-if="hasColumn(['timespan'])" align="right" width="150">
+        <el-table-column
+          v-if="hasColumn(['timespan'])"
+          align="right"
+          width="150"
+        >
           <template slot-scope="scope">
             <span>{{ scope.row.timespan }}</span>
           </template>
@@ -50,7 +64,9 @@
         <el-table-column v-if="isLoggedIn" align="right" width="80">
           <template slot-scope="scope">
             <el-button
-              @click="toggleRowDialog({ index: scope.$index, rows: filteredRows })"
+              @click="
+                toggleRowDialog({ index: scope.$index, rows: filteredRows })
+              "
               icon="el-icon-edit"
               size="small"
               circle
@@ -76,9 +92,7 @@
         <div class="content-mobile" v-if="row.content">
           <span v-html="row.content" />
         </div>
-        <div class="description-mobile">
-          <span v-html="row.description" />
-        </div>
+        <div class="description-mobile"><span v-html="row.description" /></div>
 
         <el-button
           v-if="isLoggedIn"
@@ -88,16 +102,16 @@
           circle
         />
 
-        <hr v-if="i !== filteredRows.length - 1">
+        <hr v-if="i !== filteredRows.length - 1" />
       </div>
     </mq-layout>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
-import ConditionalLink from '@/components/ConditionalLink.vue';
-import Rectangle from './Rectangle.vue';
+import { mapState, mapMutations } from 'vuex'
+import ConditionalLink from '@/components/ConditionalLink.vue'
+import Rectangle from './Rectangle.vue'
 
 export default {
   name: 'Section',
@@ -113,7 +127,7 @@ export default {
     filteredRows() {
       return this.isLoggedIn
         ? this.section.sectionRows
-        : this.section.sectionRows.filter(sr => !sr.hidden);
+        : this.section.sectionRows.filter(sr => !sr.hidden)
     },
   },
 
@@ -121,14 +135,14 @@ export default {
     ...mapMutations(['toggleRowDialog']),
 
     hasColumn(columnNames) {
-      return this.section.sectionRows.some(sr => columnNames.some(cn => sr[cn]));
+      return this.section.sectionRows.some(sr => columnNames.some(cn => sr[cn]))
     },
 
     getRowStyle({ row }) {
-      return { opacity: row.hidden ? '.3' : 'initial' };
+      return { opacity: row.hidden ? '.3' : 'initial' }
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -137,7 +151,7 @@ export default {
     display: flex;
     flex-wrap: none;
     align-items: center;
-    margin-bottom: .7rem;
+    margin-bottom: 0.7rem;
 
     @media screen and (max-width: $screen-sm) {
       margin-bottom: 1.6rem;
@@ -155,19 +169,24 @@ export default {
   }
 
   .description {
-    color: transparentize($color: $color-primary, $amount: .4);
+    color: transparentize($color: $color-primary, $amount: 0.4);
   }
 }
 
-.row { background-color: $color-background !important; }
-.cell { word-break: break-word !important; vertical-align: top !important; }
+.row {
+  background-color: $color-background !important;
+}
+.cell {
+  word-break: break-word !important;
+  vertical-align: top !important;
+}
 
 .section-mobile {
   .row-mobile {
     h4 {
       font-size: 15px;
       margin-top: 0;
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
       color: $color-primary;
     }
 
@@ -189,18 +208,19 @@ export default {
     }
 
     .description-mobile {
-      color: transparentize($color: $color-primary, $amount: .35);
+      color: transparentize($color: $color-primary, $amount: 0.35);
       font-size: 14px;
     }
 
-    .content-mobile, .description-mobile {
+    .content-mobile,
+    .description-mobile {
       line-height: 1.4rem;
     }
   }
 
   hr {
     margin: 1.5rem 0;
-    opacity: .15;
+    opacity: 0.15;
   }
 }
 </style>

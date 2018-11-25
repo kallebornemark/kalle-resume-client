@@ -3,7 +3,8 @@
     placement="left-start"
     width="200"
     trigger="click"
-    v-model="isVisible">
+    v-model="isVisible"
+  >
     <div class="login-dialog">
       <el-input
         placeholder="Username"
@@ -22,18 +23,30 @@
       <el-button style="width: 100%" @click="login">Log in</el-button>
     </div>
 
-    <div class="login-trigger" slot="reference" v-if="!isLoggedIn" @click="togglePopover" :style="{ opacity: iconOpacity }">
+    <div
+      class="login-trigger"
+      slot="reference"
+      v-if="!isLoggedIn"
+      @click="togglePopover"
+      :style="{ opacity: iconOpacity }"
+    >
       <i class="far fa-user-circle" />
     </div>
-    <div class="login-trigger" slot="reference" v-else @click="logout" :style="{ opacity: iconOpacity }">
+    <div
+      class="login-trigger"
+      slot="reference"
+      v-else
+      @click="logout"
+      :style="{ opacity: iconOpacity }"
+    >
       <i class="fas fa-sign-out-alt" />
     </div>
   </el-popover>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
-import API from '@/api';
+import { mapState, mapMutations } from 'vuex'
+import API from '@/api'
 
 export default {
   name: 'LoginTrigger',
@@ -43,14 +56,14 @@ export default {
       isVisible: false,
       username: '',
       password: '',
-    };
+    }
   },
 
   computed: {
     ...mapState(['isLoggedIn']),
 
     iconOpacity() {
-      return this.isVisible ? 1 : null;
+      return this.isVisible ? 1 : null
     },
   },
 
@@ -58,13 +71,13 @@ export default {
     ...mapMutations(['setToken', 'logout']),
 
     togglePopover() {
-      this.isVisible = !this.isVisible;
+      this.isVisible = !this.isVisible
     },
 
     resetPopover() {
-      this.isVisible = false;
-      this.username = '';
-      this.password = '';
+      this.isVisible = false
+      this.username = ''
+      this.password = ''
     },
 
     async login() {
@@ -73,19 +86,19 @@ export default {
         JSON.stringify({
           username: this.username,
           password: this.password,
-        }),
-      );
+        })
+      )
 
       if (response.error) {
-        alert('Unsuccessful login!');
-        return;
+        alert('Unsuccessful login!')
+        return
       }
 
-      this.setToken(response.id);
-      this.resetPopover();
+      this.setToken(response.id)
+      this.resetPopover()
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -95,7 +108,7 @@ export default {
   top: $spacing-sm;
   padding: $spacing-xs;
   font-size: 1.5em;
-  opacity: .12;
+  opacity: 0.12;
   cursor: pointer;
 
   &:hover {

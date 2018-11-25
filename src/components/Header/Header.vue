@@ -2,21 +2,21 @@
   <div class="header">
     <h1 class="name">Kalle Bornemark</h1>
 
-    <rolldown-blinds text="web developer"/>
+    <rolldown-blinds text="web developer" />
 
     <login />
   </div>
 </template>
 
 <script>
-import Login from '@/components/Login.vue';
-import HeaderLine from '@/components/Header/HeaderLine.vue';
-import RolldownBlinds from '@/components/RolldownBlinds.vue';
+import Login from '@/components/Login.vue'
+import HeaderLine from '@/components/Header/HeaderLine.vue'
+import RolldownBlinds from '@/components/RolldownBlinds.vue'
 
 export default {
   name: 'Header',
   components: { Login, HeaderLine, RolldownBlinds },
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -38,7 +38,7 @@ export default {
 
   .name {
     margin-top: 5rem;
-    margin-bottoM: 1.3rem;
+    margin-bottom: 1.3rem;
     color: $color-primary;
     font-size: 2.8em;
     font-family: $font-primary;
@@ -49,5 +49,4 @@ export default {
     }
   }
 }
-
 </style>

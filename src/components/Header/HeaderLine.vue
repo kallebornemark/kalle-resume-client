@@ -8,7 +8,7 @@
 <script>
 export default {
   name: 'HeaderLine',
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -29,7 +29,7 @@ export default {
   .shadow {
     height: 6px;
     background-color: $color-shadow;
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 </style>

@@ -4,14 +4,20 @@ export default {
   props: {
     hasLink: Boolean,
   },
-  render(h, { slots, props: { hasLink } }) {
-    const { link, text } = slots();
+  render(
+    h,
+    {
+      slots,
+      props: { hasLink },
+    }
+  ) {
+    const { link, text } = slots()
 
     if (hasLink) {
-      link[0].children = text;
-      return link;
+      link[0].children = text
+      return link
     }
-    return text;
+    return text
   },
-};
+}
 </script>
