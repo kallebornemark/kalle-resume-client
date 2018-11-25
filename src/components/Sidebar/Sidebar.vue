@@ -14,7 +14,6 @@ export default {
 <style scoped lang="scss">
 .sidebar {
   position: absolute;
-  min-width: 15.5rem;
 
   @media screen and (max-width: $screen-md) {
     position: initial;

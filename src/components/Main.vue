@@ -3,15 +3,11 @@
     <div class="sidebar-container"><portfolio-sidebar /></div>
 
     <div class="introduction">
-      <highlight-box>
-        <h2>Hello! 👋</h2>
+      <i v-if="!introduction" class="el-icon-loading" />
+      <highlight-box v-else>
+        <h2>{{ introduction.title }}</h2>
         <p>Kalle here. Welcome to my resume.</p>
-        <p>
-          I am a driven, meticulous and socially capable software developer
-          constantly looking into new techniques and challenges. Although I
-          usually label myself as a full-stack developer, I've lately spent most
-          of my time building front-ends.
-        </p>
+        <p>{{ introduction.body }}</p>
       </highlight-box>
     </div>
 
@@ -48,6 +44,7 @@ export default {
 
   data() {
     return {
+      introduction: null,
       sections: null,
     }
   },
@@ -58,6 +55,10 @@ export default {
 
   methods: {
     ...mapMutations(['toggleSectionDialog', 'toggleRowDialog']),
+
+    async getIntroduction() {
+      this.introduction = await API.getJson('/api/Introductions/1')
+    },
 
     async getSections() {
       this.sections = await API.getJson(
@@ -72,7 +73,7 @@ export default {
   },
 
   mounted() {
-    this.getSections()
+    Promise.all([this.getIntroduction(), this.getSections()])
   },
 }
 </script>
@@ -85,8 +86,10 @@ export default {
     '. sections';
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
+  grid-template-columns: 15.5rem 1fr;
 
   @media screen and (max-width: $screen-md) {
+    grid-template-columns: unset;
     grid-template-areas:
       'sidebar introduction'
       'sections sections';
