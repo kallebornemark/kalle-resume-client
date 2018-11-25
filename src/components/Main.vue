@@ -89,13 +89,13 @@ export default {
   grid-template-columns: 15.5rem 1fr;
 
   @media screen and (max-width: $screen-md) {
-    grid-template-columns: unset;
     grid-template-areas:
       'sidebar introduction'
       'sections sections';
   }
 
   @media screen and (max-width: $screen-sm) {
+    grid-template-columns: 1fr;
     grid-template-areas:
       'introduction'
       'sidebar'
