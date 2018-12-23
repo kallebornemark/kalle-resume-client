@@ -6,7 +6,6 @@
       <i v-if="!introduction" class="el-icon-loading" />
       <highlight-box v-else>
         <h2>{{ introduction.title }}</h2>
-        <p>Kalle here. Welcome to my resume.</p>
         <p>{{ introduction.body }}</p>
       </highlight-box>
     </div>
