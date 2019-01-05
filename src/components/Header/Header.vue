@@ -1,11 +1,12 @@
 <template>
-  <div class="header">
-    <h1 class="name">Kalle Bornemark</h1>
-
-    <rolldown-blinds text="web developer"/>
+  <header>
+    <section class="content">
+      <h1 class="name">Kalle Bornemark</h1>
+      <rolldown-blinds text="software builder 🔧👷‍♂️"/>
+    </section>
 
     <login/>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -19,32 +20,32 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.header {
-  min-height: 13rem;
+header {
+  height: 40vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  margin-bottom: 6rem;
 
   @media screen and (max-width: 366px) {
     min-height: 17rem;
   }
 
   @media screen and (max-width: $screen-xs) {
-    height: 70vh;
+    height: 90vh;
     margin-bottom: 0;
   }
 
-  .name {
-    margin-top: 5rem;
-    margin-bottom: 1.3rem;
-    color: $color-primary;
-    font-size: 2.8em;
-    font-family: $font-primary;
-    font-weight: 400;
+  .content {
+    height: 8.3rem;
 
-    @media screen and (max-width: $screen-xs) {
-      margin-top: 25vh;
+    .name {
+      margin-top: 0;
+      margin-bottom: 1.3rem;
+      color: $color-primary;
+      font-size: 2.8em;
+      font-family: $font-primary;
+      font-weight: 400;
     }
   }
 }

@@ -1,6 +1,9 @@
 <template>
   <div class="rolldown-blinds">
-    <div class="line" />
+    <div class="line">
+      <div class="knob left"/>
+      <div class="knob right"/>
+    </div>
 
     <transition name="slide-down" appear>
       <div class="flag">
@@ -18,31 +21,52 @@ export default {
 
 <style lang="scss">
 .rolldown-blinds {
-  width: 11.6rem;
+  width: 15rem;
   margin: 0 auto;
   max-width: 100%;
   position: relative;
 
   .line {
     box-sizing: border-box;
-    background-color: $color-accent-faded;
-    height: 3px;
+    background-color: transparentize($color-accent, 0.3);
+    height: 4px;
     width: 100%;
     border-radius: 1px;
+    @include shadow-blurry;
+    border-top: 2px solid $color-accent;
+    position: relative;
+
+    .knob {
+      position: absolute;
+      width: 4px;
+      background: #b6b6b6;
+      top: -2px;
+      height: 4px;
+      overflow: hidden;
+
+      &.left {
+        left: -3px;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+      }
+      &.right {
+        right: -3px;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+      }
+    }
   }
 
   .flag {
     position: relative;
-    background-color: white;
+    background-color: rgba(149, 188, 193, 0.05);
     height: 2.9rem;
     margin: 0 1px;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     overflow: hidden;
-    /* border: 1px solid transparentize($color: $color-border, $amount: 0.2); */
-    @include border-standard;
+    @include border-thick;
     border-top: none;
-    @include shadow-blurry;
   }
 
   .label {
@@ -50,11 +74,11 @@ export default {
     left: 0;
     right: 0;
     bottom: 33%;
-    color: lighten($color-primary, 10%);
+    color: #716967;
     font-family: $font-secondary;
-    letter-spacing: 2.3px;
+    letter-spacing: 2.7px;
     text-transform: lowercase;
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-weight: 400;
     margin: 0;
   }

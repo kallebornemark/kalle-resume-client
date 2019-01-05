@@ -1,49 +1,45 @@
 <template>
-  <div class="main">
-    <div class="sidebar-container"><portfolio-sidebar /></div>
+  <main>
+    <top-section/>
 
-    <div class="introduction">
-      <i v-if="!introduction" class="el-icon-loading" />
-      <highlight-box v-else>
-        <h2>{{ introduction.title }}</h2>
-        <p>{{ introduction.body }}</p>
-      </highlight-box>
+    <div class="down-arrow">
+      <down-arrow/>
     </div>
 
     <div class="sections">
-      <i v-if="!sections" class="el-icon-loading" />
-      <portfolio-section
-        v-for="section in sections"
-        :key="section.id"
-        v-bind="{ section }"
-      />
+      <i v-if="!sections" class="el-icon-loading"/>
+      <div v-for="(section, i) in sections" :key="section.id">
+        <portfolio-section v-bind="{ section }"/>
+        <divider v-if="i !== sections.length - 1"/>
+      </div>
     </div>
 
-    <row-dialog :reload-data="reloadData" />
-  </div>
+    <row-dialog :reload-data="reloadData"/>
+  </main>
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
 
-import Sidebar from "@/components/Sidebar/Sidebar.vue";
-import Section from "@/components/Section/Section.vue";
-import HighlightBox from "@/components/HighlightBox.vue";
 import API from "@/api";
-import RowDialog from "./Dialogs/RowDialog.vue";
+import Section from "@/components/Section/Section.vue";
+import TopSection from "@/components/TopSection/TopSection.vue";
+import RowDialog from "@/components/Dialogs/RowDialog.vue";
+import Divider from "@/components/Divider.vue";
+import DownArrow from "@/components/Icons/DownArrow/DownArrow.vue";
 
 export default {
   name: "MainContainer",
   components: {
-    HighlightBox,
+    TopSection,
     RowDialog,
-    "portfolio-sidebar": Sidebar,
+    Divider,
+    DownArrow,
     "portfolio-section": Section
   },
 
   data() {
     return {
-      introduction: null,
       sections: null
     };
   },
@@ -54,10 +50,6 @@ export default {
 
   methods: {
     ...mapMutations(["toggleSectionDialog", "toggleRowDialog"]),
-
-    async getIntroduction() {
-      this.introduction = await API.getJson("/api/Introductions/1");
-    },
 
     async getSections() {
       this.sections = await API.getJson(
@@ -72,33 +64,26 @@ export default {
   },
 
   mounted() {
-    Promise.all([this.getIntroduction(), this.getSections()]);
+    this.getSections();
   }
 };
 </script>
 
 <style scoped lang="scss">
-.main {
-  display: grid;
-  grid-template-areas:
-    "sidebar introduction"
-    ". sections";
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
-  grid-template-columns: 15.5rem 1fr;
+main {
+  .down-arrow {
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    margin: $spacing-xxl 0;
 
-  @media screen and (max-width: $screen-md) {
-    grid-template-areas:
-      "sidebar introduction"
-      "sections sections";
+    @media screen and (max-width: $screen-sm) {
+      margin: $spacing-lg 0;
+    }
   }
 
-  @media screen and (max-width: $screen-sm) {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "introduction"
-      "sidebar"
-      "sections";
+  hr {
+    margin: $spacing-xxl auto;
   }
 
   .sidebar-container {
@@ -115,24 +100,15 @@ export default {
     }
   }
 
-  .introduction {
-    grid-area: introduction;
-
-    h2 {
-      margin: 0 0 1.5rem 0;
-      font-size: 1.4em;
-    }
-  }
-
   .sections {
     grid-area: sections;
 
-    > :not(:last-child) {
-      margin-bottom: 2.2rem;
+    @media screen and (max-width: $screen-xs) {
+      margin-top: $spacing-lg;
+    }
 
-      @media screen and (max-width: $screen-sm) {
-        margin-bottom: 2.9rem;
-      }
+    hr {
+      margin: $spacing-xl auto;
     }
   }
 }

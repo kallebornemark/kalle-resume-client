@@ -38,7 +38,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 0 1rem;
-  max-width: 70rem;
+  max-width: $app-max-width;
   margin: 0 auto;
 }
 </style>

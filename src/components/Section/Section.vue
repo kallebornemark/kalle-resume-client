@@ -1,10 +1,8 @@
 <template>
-  <div class="section">
+  <section>
     <div class="heading">
-      <!-- <portfolio-rectangle /> -->
-      <span class="name">{{ section.name }}</span>
+      <h2>{{ section.name }}</h2>
 
-      <!-- TODO: Change v-if to isLoggedIn -->
       <el-button
         v-if="isLoggedIn"
         @click="toggleRowDialog({ section, isNewRow: true })"
@@ -92,7 +90,7 @@
         <hr v-if="i !== filteredRows.length - 1">
       </div>
     </mq-layout>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -133,7 +131,7 @@ export default {
 </script>
 
 <style lang="scss">
-.section {
+section {
   .heading {
     display: flex;
     flex-wrap: none;
@@ -144,14 +142,10 @@ export default {
       margin-bottom: 1.6rem;
     }
 
-    .name {
-      font-size: 1.5em;
+    h2 {
+      margin: 0;
       font-family: $font-secondary;
       font-weight: bold;
-
-      @media screen and (max-width: $screen-sm) {
-        font-size: 1.7em;
-      }
     }
   }
 
@@ -160,9 +154,6 @@ export default {
   }
 }
 
-.row {
-  background-color: $color-background !important;
-}
 .cell {
   word-break: break-word !important;
   vertical-align: top !important;

@@ -5,3 +5,15 @@
 @mixin border-standard() {
   border: 1px solid $color-border;
 }
+
+@mixin border-thick() {
+  border: 3px solid $color-border;
+}
+
+@mixin hover-enlarge() {
+  transition: transform 0.3s;
+  &:hover {
+    transition: transform 0s;
+    transform: scale(1.1);
+  }
+}
