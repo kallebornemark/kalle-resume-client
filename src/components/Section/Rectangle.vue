@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  name: 'Rectangle',
-}
+  name: "Rectangle"
+};
 </script>
 
 <style scoped lang="scss">

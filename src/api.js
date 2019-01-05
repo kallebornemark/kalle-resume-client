@@ -1,51 +1,51 @@
-import store from '@/store'
+import store from "@/store";
 
 const call = async (method, endpoint, body, onSuccess) => {
   const {
-    state: { token },
-  } = store()
+    state: { token }
+  } = store();
   const headers = {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-    Authorization: token,
-  }
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: token
+  };
 
-  const url = `${process.env.VUE_APP_API_URL}${endpoint}`
+  const url = `${process.env.VUE_APP_API_URL}${endpoint}`;
   const response = await fetch(url, {
     headers,
     method,
-    ...(body ? { body } : {}), // Only add body if it exists
-  })
+    ...(body ? { body } : {}) // Only add body if it exists
+  });
 
   if (onSuccess && response.status === 200) {
-    onSuccess()
+    onSuccess();
   }
 
-  return response
-}
+  return response;
+};
 
 export default {
   async postJson(endpoint, body, onSuccess) {
-    const response = await call('POST', endpoint, body, onSuccess)
-    const json = await response.json()
-    return json
+    const response = await call("POST", endpoint, body, onSuccess);
+    const json = await response.json();
+    return json;
   },
 
   async getJson(endpoint, onSuccess) {
-    const response = await call('GET', endpoint, null, onSuccess)
-    const json = await response.json()
-    return json
+    const response = await call("GET", endpoint, null, onSuccess);
+    const json = await response.json();
+    return json;
   },
 
   post(endpoint, body, onSuccess) {
-    call('POST', endpoint, body, onSuccess)
+    call("POST", endpoint, body, onSuccess);
   },
 
   patch(endpoint, body, onSuccess) {
-    call('PATCH', endpoint, body, onSuccess)
+    call("PATCH", endpoint, body, onSuccess);
   },
 
   delete(endpoint, onSuccess) {
-    call('DELETE', endpoint, null, onSuccess)
-  },
-}
+    call("DELETE", endpoint, null, onSuccess);
+  }
+};

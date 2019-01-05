@@ -24,81 +24,81 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from "vuex";
 
-import Sidebar from '@/components/Sidebar/Sidebar.vue'
-import Section from '@/components/Section/Section.vue'
-import HighlightBox from '@/components/HighlightBox.vue'
-import API from '@/api'
-import RowDialog from './Dialogs/RowDialog.vue'
+import Sidebar from "@/components/Sidebar/Sidebar.vue";
+import Section from "@/components/Section/Section.vue";
+import HighlightBox from "@/components/HighlightBox.vue";
+import API from "@/api";
+import RowDialog from "./Dialogs/RowDialog.vue";
 
 export default {
-  name: 'MainContainer',
+  name: "MainContainer",
   components: {
     HighlightBox,
     RowDialog,
-    'portfolio-sidebar': Sidebar,
-    'portfolio-section': Section,
+    "portfolio-sidebar": Sidebar,
+    "portfolio-section": Section
   },
 
   data() {
     return {
       introduction: null,
-      sections: null,
-    }
+      sections: null
+    };
   },
 
   computed: {
-    ...mapState(['rowDialogIsVisible']),
+    ...mapState(["rowDialogIsVisible"])
   },
 
   methods: {
-    ...mapMutations(['toggleSectionDialog', 'toggleRowDialog']),
+    ...mapMutations(["toggleSectionDialog", "toggleRowDialog"]),
 
     async getIntroduction() {
-      this.introduction = await API.getJson('/api/Introductions/1')
+      this.introduction = await API.getJson("/api/Introductions/1");
     },
 
     async getSections() {
       this.sections = await API.getJson(
-        '/api/Sections?filter[include]=sectionRows'
-      )
+        "/api/Sections?filter[include]=sectionRows"
+      );
     },
 
     reloadData() {
-      this.section = null
-      this.getSections()
-    },
+      this.section = null;
+      this.getSections();
+    }
   },
 
   mounted() {
-    Promise.all([this.getIntroduction(), this.getSections()])
-  },
-}
+    Promise.all([this.getIntroduction(), this.getSections()]);
+  }
+};
 </script>
 
 <style scoped lang="scss">
 .main {
   display: grid;
   grid-template-areas:
-    'sidebar introduction'
-    '. sections';
+    "sidebar introduction"
+    ". sections";
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
   grid-template-columns: 15.5rem 1fr;
 
   @media screen and (max-width: $screen-md) {
     grid-template-areas:
-      'sidebar introduction'
-      'sections sections';
+      "sidebar introduction"
+      "sections sections";
   }
 
   @media screen and (max-width: $screen-sm) {
     grid-template-columns: 1fr;
     grid-template-areas:
-      'introduction'
-      'sidebar'
-      'sections';
+      "introduction"
+      "sidebar"
+      "sections";
   }
 
   .sidebar-container {

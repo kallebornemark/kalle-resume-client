@@ -118,78 +118,78 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
-import API from '@/api'
+import { mapState, mapMutations } from "vuex";
+import API from "@/api";
 
 export default {
-  name: 'RowDialog',
+  name: "RowDialog",
 
-  props: ['reloadData'],
+  props: ["reloadData"],
 
   computed: {
     ...mapState([
-      'token',
-      'rowDialogIsVisible',
-      'currentRow',
-      'currentSection',
-      'isNewRow',
+      "token",
+      "rowDialogIsVisible",
+      "currentRow",
+      "currentSection",
+      "isNewRow"
     ]),
 
     properties() {
-      return Object.keys(this.currentRow).map(key => key)
+      return Object.keys(this.currentRow).map(key => key);
     },
 
     hidden: {
       get() {
-        return this.currentRow.hidden
+        return this.currentRow.hidden;
       },
       set() {
-        this.updateRow({ field: 'hidden', value: !this.currentRow.hidden })
-      },
-    },
+        this.updateRow({ field: "hidden", value: !this.currentRow.hidden });
+      }
+    }
   },
 
   methods: {
-    ...mapMutations(['toggleRowDialog', 'updateRow']),
+    ...mapMutations(["toggleRowDialog", "updateRow"]),
 
     handleUpdateRow(field, value) {
-      this.updateRow({ field, value })
+      this.updateRow({ field, value });
     },
 
     update() {
-      const jsonBody = JSON.stringify(this.currentRow)
+      const jsonBody = JSON.stringify(this.currentRow);
 
-      API.patch('/api/SectionRows', jsonBody, () => this.toggleRowDialog({}))
+      API.patch("/api/SectionRows", jsonBody, () => this.toggleRowDialog({}));
     },
 
     add() {
-      const body = { ...this.currentRow, sectionId: this.currentSection.id }
-      const jsonBody = JSON.stringify(body)
+      const body = { ...this.currentRow, sectionId: this.currentSection.id };
+      const jsonBody = JSON.stringify(body);
 
       API.post(
-        '/api/SectionRows', // endpoint
+        "/api/SectionRows", // endpoint
         jsonBody, // body
         this.reset // onSuccess
-      )
+      );
     },
 
     remove() {
-      if (confirm('Are you sure?')) {
+      if (confirm("Are you sure?")) {
         API.delete(
           `/api/SectionRows/${this.currentRow.id}`, // enpoint
           this.reset() // onSuccess
-        )
+        );
       }
     },
 
     reset() {
-      this.toggleRowDialog({})
+      this.toggleRowDialog({});
       this.$nextTick(() => {
-        this.reloadData()
-      })
-    },
-  },
-}
+        this.reloadData();
+      });
+    }
+  }
+};
 </script>
 
 <style lang="scss">

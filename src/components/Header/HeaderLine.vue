@@ -7,8 +7,8 @@
 
 <script>
 export default {
-  name: 'HeaderLine',
-}
+  name: "HeaderLine"
+};
 </script>
 
 <style scoped lang="scss">

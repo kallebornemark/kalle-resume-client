@@ -2,21 +2,20 @@
   <div class="header">
     <h1 class="name">Kalle Bornemark</h1>
 
-    <rolldown-blinds text="web developer" />
+    <rolldown-blinds text="web developer"/>
 
-    <login />
+    <login/>
   </div>
 </template>
 
 <script>
-import Login from '@/components/Login.vue'
-import HeaderLine from '@/components/Header/HeaderLine.vue'
-import RolldownBlinds from '@/components/RolldownBlinds.vue'
+import Login from "@/components/Login.vue";
+import RolldownBlinds from "@/components/RolldownBlinds.vue";
 
 export default {
-  name: 'Header',
-  components: { Login, HeaderLine, RolldownBlinds },
-}
+  name: "Header",
+  components: { Login, RolldownBlinds }
+};
 </script>
 
 <style scoped lang="scss">

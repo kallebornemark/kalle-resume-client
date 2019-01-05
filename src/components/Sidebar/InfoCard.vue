@@ -22,31 +22,31 @@
 </template>
 
 <script>
-import API from '@/api'
+import API from "@/api";
 
 export default {
-  name: 'InfoCard',
+  name: "InfoCard",
 
   data() {
     return {
-      items: null,
-    }
+      items: null
+    };
   },
 
   mounted() {
-    this.getInfoCardItems()
+    this.getInfoCardItems();
   },
 
   methods: {
     async getInfoCardItems() {
-      this.items = await API.getJson('/api/InfoCardItems')
+      this.items = await API.getJson("/api/InfoCardItems");
     },
 
     openLink(url) {
-      window.open(url, '_blank')
-    },
-  },
-}
+      window.open(url, "_blank");
+    }
+  }
+};
 </script>
 
 <style scoped lang="scss">

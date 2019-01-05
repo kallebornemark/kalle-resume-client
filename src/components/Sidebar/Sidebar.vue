@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import InfoCard from './InfoCard.vue'
+import InfoCard from "./InfoCard.vue";
 
 export default {
-  name: 'Sidebar',
-  components: { InfoCard },
-}
+  name: "Sidebar",
+  components: { InfoCard }
+};
 </script>
 
 <style scoped lang="scss">

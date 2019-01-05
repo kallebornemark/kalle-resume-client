@@ -45,60 +45,60 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
-import API from '@/api'
+import { mapState, mapMutations } from "vuex";
+import API from "@/api";
 
 export default {
-  name: 'LoginTrigger',
+  name: "LoginTrigger",
 
   data() {
     return {
       isVisible: false,
-      username: '',
-      password: '',
-    }
+      username: "",
+      password: ""
+    };
   },
 
   computed: {
-    ...mapState(['isLoggedIn']),
+    ...mapState(["isLoggedIn"]),
 
     iconOpacity() {
-      return this.isVisible ? 1 : null
-    },
+      return this.isVisible ? 1 : null;
+    }
   },
 
   methods: {
-    ...mapMutations(['setToken', 'logout']),
+    ...mapMutations(["setToken", "logout"]),
 
     togglePopover() {
-      this.isVisible = !this.isVisible
+      this.isVisible = !this.isVisible;
     },
 
     resetPopover() {
-      this.isVisible = false
-      this.username = ''
-      this.password = ''
+      this.isVisible = false;
+      this.username = "";
+      this.password = "";
     },
 
     async login() {
       const response = await API.postJson(
-        '/api/Users/login',
+        "/api/Users/login",
         JSON.stringify({
           username: this.username,
-          password: this.password,
+          password: this.password
         })
-      )
+      );
 
       if (response.error) {
-        alert('Unsuccessful login!')
-        return
+        alert("Unsuccessful login!");
+        return;
       }
 
-      this.setToken(response.id)
-      this.resetPopover()
-    },
-  },
-}
+      this.setToken(response.id);
+      this.resetPopover();
+    }
+  }
+};
 </script>
 
 <style lang="scss">

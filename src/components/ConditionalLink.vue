@@ -2,22 +2,22 @@
 export default {
   functional: true,
   props: {
-    hasLink: Boolean,
+    hasLink: Boolean
   },
   render(
     h,
     {
       slots,
-      props: { hasLink },
+      props: { hasLink }
     }
   ) {
-    const { link, text } = slots()
+    const { link, text } = slots();
 
     if (hasLink) {
-      link[0].children = text
-      return link
+      link[0].children = text;
+      return link;
     }
-    return text
-  },
-}
+    return text;
+  }
+};
 </script>

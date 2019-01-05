@@ -24,11 +24,7 @@
         :row-style="getRowStyle"
         cell-class-name="cell"
       >
-        <el-table-column
-          v-if="hasColumn(['category'])"
-          prop="category"
-          :width="160"
-        >
+        <el-table-column v-if="hasColumn(['category'])" prop="category" :width="160">
           <template slot-scope="scope">
             <conditional-link :hasLink="!!scope.row.linkURL">
               <a slot="link" :href="scope.row.linkURL" target="_blank"></a>
@@ -37,25 +33,14 @@
           </template>
         </el-table-column>
 
-        <el-table-column
-          v-if="hasColumn(['content', 'description'])"
-          prop="content"
-        >
+        <el-table-column v-if="hasColumn(['content', 'description'])" prop="content">
           <template slot-scope="scope">
-            <span v-html="scope.row.content" />
-            <div
-              v-if="scope.row.description"
-              class="description"
-              v-html="scope.row.description"
-            ></div>
+            <span v-html="scope.row.content"/>
+            <div v-if="scope.row.description" class="description" v-html="scope.row.description"></div>
           </template>
         </el-table-column>
 
-        <el-table-column
-          v-if="hasColumn(['timespan'])"
-          align="right"
-          width="150"
-        >
+        <el-table-column v-if="hasColumn(['timespan'])" align="right" width="150">
           <template slot-scope="scope">
             <span>{{ scope.row.timespan }}</span>
           </template>
@@ -90,9 +75,11 @@
         </div>
 
         <div class="content-mobile" v-if="row.content">
-          <span v-html="row.content" />
+          <span v-html="row.content"/>
         </div>
-        <div class="description-mobile"><span v-html="row.description" /></div>
+        <div class="description-mobile">
+          <span v-html="row.description"/>
+        </div>
 
         <el-button
           v-if="isLoggedIn"
@@ -102,47 +89,47 @@
           circle
         />
 
-        <hr v-if="i !== filteredRows.length - 1" />
+        <hr v-if="i !== filteredRows.length - 1">
       </div>
     </mq-layout>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
-import ConditionalLink from '@/components/ConditionalLink.vue'
-import Rectangle from './Rectangle.vue'
+import { mapState, mapMutations } from "vuex";
+import ConditionalLink from "@/components/ConditionalLink.vue";
 
 export default {
-  name: 'Section',
+  name: "Section",
   components: {
-    ConditionalLink,
-    'portfolio-rectangle': Rectangle,
+    ConditionalLink
   },
-  props: ['section'],
+  props: ["section"],
 
   computed: {
-    ...mapState(['isLoggedIn']),
+    ...mapState(["isLoggedIn"]),
 
     filteredRows() {
       return this.isLoggedIn
         ? this.section.sectionRows
-        : this.section.sectionRows.filter(sr => !sr.hidden)
-    },
+        : this.section.sectionRows.filter(sr => !sr.hidden);
+    }
   },
 
   methods: {
-    ...mapMutations(['toggleRowDialog']),
+    ...mapMutations(["toggleRowDialog"]),
 
     hasColumn(columnNames) {
-      return this.section.sectionRows.some(sr => columnNames.some(cn => sr[cn]))
+      return this.section.sectionRows.some(sr =>
+        columnNames.some(cn => sr[cn])
+      );
     },
 
     getRowStyle({ row }) {
-      return { opacity: row.hidden ? '.3' : 'initial' }
-    },
-  },
-}
+      return { opacity: row.hidden ? ".3" : "initial" };
+    }
+  }
+};
 </script>
 
 <style lang="scss">
