@@ -21,18 +21,14 @@ export default {
 
 <style scoped lang="scss">
 header {
-  height: 40vh;
+  height: 37vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 
-  @media screen and (max-width: 366px) {
-    min-height: 17rem;
-  }
-
   @media screen and (max-width: $screen-xs) {
-    height: 90vh;
+    height: 80vh;
     margin-bottom: 0;
   }
 

@@ -16,7 +16,7 @@ hr {
   border: none;
   margin: 0 auto;
   border-radius: 5px;
-  opacity: 0.2;
+  opacity: 0.4;
 
   @media screen and (max-width: $screen-sm) {
     width: 90%;

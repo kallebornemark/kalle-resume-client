@@ -59,7 +59,7 @@ export default {
 
   .flag {
     position: relative;
-    background-color: rgba(149, 188, 193, 0.05);
+    background-color: rgba(149, 188, 193, 0.02);
     height: 2.9rem;
     margin: 0 1px;
     border-bottom-left-radius: 5px;

@@ -75,7 +75,7 @@ main {
     height: 1rem;
     display: flex;
     justify-content: center;
-    margin: $spacing-xxl 0;
+    margin: $spacing-xl 0;
 
     @media screen and (max-width: $screen-sm) {
       margin: $spacing-lg 0;
