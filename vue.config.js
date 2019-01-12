@@ -16,6 +16,7 @@ module.exports = {
         data: `
           @import '~@/styles/vars.scss';
           @import '~@/styles/mixins.scss';
+          @import '~@/styles/dialog.scss';
         `
       }
     }

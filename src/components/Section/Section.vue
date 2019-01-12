@@ -47,9 +47,7 @@
         <el-table-column v-if="isLoggedIn" align="right" width="80">
           <template slot-scope="scope">
             <el-button
-              @click="
-                toggleRowDialog({ index: scope.$index, rows: filteredRows })
-              "
+              @click="toggleRowDialog({ index: scope.$index, rows: filteredRows })"
               icon="el-icon-edit"
               size="small"
               circle

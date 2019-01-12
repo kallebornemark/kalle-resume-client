@@ -21,8 +21,10 @@ const initStore = () =>
     state: {
       token: null,
       isLoggedIn: false,
-      sectionDialogIsVisible: false,
       currentSection: null,
+
+      introductionDialogIsVisible: false,
+      introduction: null,
 
       rowDialogIsVisible: false,
       currentRow: getInitialRow(),
@@ -51,6 +53,17 @@ const initStore = () =>
         localStorage.removeItem("token");
       },
 
+      // Introduction
+      toggleIntroductionDialog(state, { introduction }) {
+        state.introduction = introduction;
+        state.introductionDialogIsVisible = !state.introductionDialogIsVisible;
+      },
+
+      updateIntroduction(state, { field, value }) {
+        state.introduction[field] = value;
+      },
+
+      // Rows
       toggleRowDialog(state, { section, index, rows, isNewRow = false }) {
         state.rowDialogIsVisible = !state.rowDialogIsVisible;
         state.currentRow =

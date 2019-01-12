@@ -4,13 +4,7 @@
       <avatar/>
     </div>
 
-    <div class="text">
-      <h2>Hello 👋</h2>
-      <p>Kalle here. Welcome to my resume!</p>
-      <p>I am a driven, meticulous and socially capable developer currently based in Malmö, Sweden. I am constantly looking for new techniques and challenges, and although I usually label myself as a full-stack developer, I've lately spent most of my time building front-ends. My primary strengths are React, Vue and CSS.</p>
-
-      <p>Don't hesitate to reach out through any of the links below!</p>
-    </div>
+    <introduction/>
 
     <div class="social-buttons">
       <social-buttons/>
@@ -20,30 +14,15 @@
 
 <script>
 import Avatar from "@/components/TopSection/Avatar.vue";
+import Introduction from "@/components/TopSection/Introduction.vue";
 import SocialButtons from "@/components/TopSection/SocialButtons/SocialButtons.vue";
-import API from "@/api";
 
 export default {
   name: "TopSection",
   components: {
     Avatar,
-    SocialButtons
-  },
-
-  data() {
-    return {
-      introduction: null
-    };
-  },
-
-  methods: {
-    async getIntroduction() {
-      this.introduction = await API.getJson("/api/Introductions/1");
-    }
-  },
-
-  mounted() {
-    this.getIntroduction();
+    SocialButtons,
+    Introduction
   }
 };
 </script>
@@ -64,7 +43,7 @@ export default {
     grid-area: avatar;
   }
 
-  .text {
+  .introduction {
     grid-area: text;
     p:last-child {
       margin-bottom: 0;
