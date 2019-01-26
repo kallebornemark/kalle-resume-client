@@ -1,8 +1,8 @@
 <template>
   <div class="rolldown-blinds">
     <div class="line">
-      <div class="knob left"/>
-      <div class="knob right"/>
+      <div class="knob left" />
+      <div class="knob right" />
     </div>
 
     <transition name="slide-down" appear>

@@ -1,5 +1,5 @@
 <template>
-  <DownArrow/>
+  <DownArrow />
 </template>
 
 <script>

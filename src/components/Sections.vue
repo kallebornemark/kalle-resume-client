@@ -1,12 +1,12 @@
 <template>
   <div class="sections">
-    <i v-if="!sections" class="el-icon-loading"/>
+    <i v-if="!sections" class="el-icon-loading" />
     <div v-for="(section, i) in sections" :key="section.id">
-      <portfolio-section v-bind="{ section }"/>
-      <divider v-if="i !== sections.length - 1"/>
+      <portfolio-section v-bind="{ section }" />
+      <divider v-if="i !== sections.length - 1" />
     </div>
 
-    <row-dialog :reload-data="reloadData"/>
+    <row-dialog :reload-data="reloadData" />
   </div>
 </template>
 

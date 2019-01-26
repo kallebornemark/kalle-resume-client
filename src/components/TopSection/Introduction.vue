@@ -1,10 +1,10 @@
 <template>
   <div class="introduction">
-    <i v-if="!introduction" class="el-icon-loading"/>
+    <i v-if="!introduction" class="el-icon-loading" />
 
     <div v-else>
-      <h2>{{introduction.title}}</h2>
-      <div v-html="introduction.body"/>
+      <h2>{{ introduction.title }}</h2>
+      <div v-html="introduction.body" />
 
       <el-button
         v-if="isLoggedIn"
@@ -15,7 +15,7 @@
       />
     </div>
 
-    <introduction-dialog :introduction="introduction" :reload-data="reloadData"/>
+    <introduction-dialog />
   </div>
 </template>
 
@@ -29,27 +29,17 @@ export default {
     IntroductionDialog
   },
 
-  data() {
-    return {
-      introduction: null
-    };
-  },
-
   methods: {
-    ...mapMutations(["toggleIntroductionDialog"]),
+    ...mapMutations(["toggleIntroductionDialog", "setIntroduction"]),
 
     async getIntroduction() {
-      this.introduction = await API.getJson("/api/Introductions/1");
-    },
-
-    reloadData() {
-      this.introduction = null;
-      this.getIntroduction();
+      const introduction = await API.getJson("/api/Introductions/1");
+      this.setIntroduction(introduction);
     }
   },
 
   computed: {
-    ...mapState(["isLoggedIn"])
+    ...mapState(["isLoggedIn", "introduction"])
   },
 
   mounted() {

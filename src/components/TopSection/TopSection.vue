@@ -1,13 +1,13 @@
 <template>
   <section class="top-section">
     <div class="avatar">
-      <avatar/>
+      <avatar />
     </div>
 
-    <introduction/>
+    <introduction />
 
     <div class="social-buttons">
-      <social-buttons/>
+      <social-buttons />
     </div>
   </section>
 </template>

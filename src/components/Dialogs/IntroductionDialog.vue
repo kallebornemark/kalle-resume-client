@@ -33,7 +33,8 @@
         icon="el-icon-check"
         size="small"
         round
-      >Update introduction</el-button>
+        >Update introduction</el-button
+      >
     </span>
   </el-dialog>
 </template>
@@ -45,20 +46,12 @@ import API from "@/api";
 export default {
   name: "IntroductionDialog",
 
-  props: {
-    introduction: Object
-  },
-
   computed: {
-    ...mapState(["introductionDialogIsVisible"])
+    ...mapState(["introductionDialogIsVisible", "introduction"])
   },
 
   methods: {
-    ...mapMutations([
-      "toggleIntroductionDialog",
-      "updateIntroduction",
-      "introduction"
-    ]),
+    ...mapMutations(["toggleIntroductionDialog", "updateIntroduction"]),
 
     handleUpdateIntroduction(field, value) {
       this.updateIntroduction({ field, value });
@@ -67,9 +60,9 @@ export default {
     update() {
       const jsonBody = JSON.stringify(this.introduction);
 
-      API.patch("/api/Introductions/1", jsonBody, () =>
-        this.toggleIntroductionDialog({})
-      );
+      API.patch("/api/Introductions/1", jsonBody, () => {
+        this.toggleIntroductionDialog({});
+      });
     }
   }
 };

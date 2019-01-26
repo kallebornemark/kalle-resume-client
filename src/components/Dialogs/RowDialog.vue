@@ -68,7 +68,8 @@
         icon="el-icon-plus"
         size="small"
         round
-      >Add row</el-button>
+        >Add row</el-button
+      >
 
       <el-button
         type="primary"
@@ -77,7 +78,8 @@
         icon="el-icon-check"
         size="small"
         round
-      >Update row</el-button>
+        >Update row</el-button
+      >
 
       <el-button
         type="danger"
@@ -86,7 +88,8 @@
         icon="el-icon-delete"
         size="small"
         round
-      >Delete row</el-button>
+        >Delete row</el-button
+      >
     </span>
   </el-dialog>
 </template>

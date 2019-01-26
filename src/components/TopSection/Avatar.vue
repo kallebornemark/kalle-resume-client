@@ -1,9 +1,9 @@
 <template>
   <img
     src="https://i.imgur.com/g7unhmr.jpg"
-    @click="openLink('https://i.imgur.com/g7unhmr.jpg');"
+    @click="openLink('https://i.imgur.com/g7unhmr.jpg')"
     alt
-  >
+  />
 </template>
 
 <script>

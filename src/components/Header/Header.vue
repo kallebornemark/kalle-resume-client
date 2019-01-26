@@ -2,10 +2,10 @@
   <header>
     <section class="content">
       <h1 class="name">Kalle Bornemark</h1>
-      <rolldown-blinds text="software builder 🔧👷‍♂️"/>
+      <rolldown-blinds text="software builder 🔧👷‍♂️" />
     </section>
 
-    <login/>
+    <login />
   </header>
 </template>
 

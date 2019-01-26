@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <portfolio-header/>
+    <portfolio-header />
 
-    <portfolio-main/>
+    <portfolio-main />
 
-    <portfolio-footer/>
+    <portfolio-footer />
   </div>
 </template>
 

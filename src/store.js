@@ -54,9 +54,12 @@ const initStore = () =>
       },
 
       // Introduction
-      toggleIntroductionDialog(state, { introduction }) {
-        state.introduction = introduction;
+      toggleIntroductionDialog(state) {
         state.introductionDialogIsVisible = !state.introductionDialogIsVisible;
+      },
+
+      setIntroduction(state, newIntroduction) {
+        state.introduction = newIntroduction;
       },
 
       updateIntroduction(state, { field, value }) {

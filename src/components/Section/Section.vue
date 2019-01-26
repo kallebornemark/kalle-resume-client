@@ -22,7 +22,11 @@
         :row-style="getRowStyle"
         cell-class-name="cell"
       >
-        <el-table-column v-if="hasColumn(['category'])" prop="category" :width="160">
+        <el-table-column
+          v-if="hasColumn(['category'])"
+          prop="category"
+          :width="160"
+        >
           <template slot-scope="scope">
             <conditional-link :hasLink="!!scope.row.linkURL">
               <a slot="link" :href="scope.row.linkURL" target="_blank"></a>
@@ -31,14 +35,25 @@
           </template>
         </el-table-column>
 
-        <el-table-column v-if="hasColumn(['content', 'description'])" prop="content">
+        <el-table-column
+          v-if="hasColumn(['content', 'description'])"
+          prop="content"
+        >
           <template slot-scope="scope">
-            <span v-html="scope.row.content"/>
-            <div v-if="scope.row.description" class="description" v-html="scope.row.description"></div>
+            <span v-html="scope.row.content" />
+            <div
+              v-if="scope.row.description"
+              class="description"
+              v-html="scope.row.description"
+            ></div>
           </template>
         </el-table-column>
 
-        <el-table-column v-if="hasColumn(['timespan'])" align="right" width="150">
+        <el-table-column
+          v-if="hasColumn(['timespan'])"
+          align="right"
+          width="150"
+        >
           <template slot-scope="scope">
             <span>{{ scope.row.timespan }}</span>
           </template>
@@ -47,7 +62,9 @@
         <el-table-column v-if="isLoggedIn" align="right" width="80">
           <template slot-scope="scope">
             <el-button
-              @click="toggleRowDialog({ index: scope.$index, rows: filteredRows })"
+              @click="
+                toggleRowDialog({ index: scope.$index, rows: filteredRows })
+              "
               icon="el-icon-edit"
               size="small"
               circle
@@ -71,10 +88,10 @@
         </div>
 
         <div class="content-mobile" v-if="row.content">
-          <span v-html="row.content"/>
+          <span v-html="row.content" />
         </div>
         <div class="description-mobile">
-          <span v-html="row.description"/>
+          <span v-html="row.description" />
         </div>
 
         <el-button
@@ -85,7 +102,7 @@
           circle
         />
 
-        <hr v-if="i !== filteredRows.length - 1">
+        <hr v-if="i !== filteredRows.length - 1" />
       </div>
     </mq-layout>
   </section>

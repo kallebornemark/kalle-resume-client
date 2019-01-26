@@ -1,23 +1,34 @@
 <template>
   <section class="socials">
-    <a title="kalle.bornemark@gmail.com" href="mailto:kalle.bornemark@gmail.com">
-      <Email/>
+    <a
+      title="kalle.bornemark@gmail.com"
+      href="mailto:kalle.bornemark@gmail.com"
+    >
+      <Email />
     </a>
-    
-    <a title="kallebornemark @ Twitter" href="https://twitter.com/kallebornemark" target="_blank">
-      <Twitter/>
+
+    <a
+      title="kallebornemark @ Twitter"
+      href="https://twitter.com/kallebornemark"
+      target="_blank"
+    >
+      <Twitter />
     </a>
-    
-    <a title="kallebornemark @ Github" href="https://github.com/kallebornemark" target="_blank">
-      <Github/>
+
+    <a
+      title="kallebornemark @ Github"
+      href="https://github.com/kallebornemark"
+      target="_blank"
+    >
+      <Github />
     </a>
-    
+
     <a
       title="Kalle Bornemark @ LinkedIn"
       href="https://www.linkedin.com/in/kalle-bornemark-00737a4a/"
       target="_blank"
     >
-      <LinkedIn/>
+      <LinkedIn />
     </a>
   </section>
 </template>

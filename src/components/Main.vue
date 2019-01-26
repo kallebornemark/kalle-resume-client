@@ -1,12 +1,10 @@
 <template>
   <main>
-    <top-section/>
+    <top-section />
 
-    <div class="down-arrow">
-      <down-arrow/>
-    </div>
+    <div class="down-arrow"><down-arrow /></div>
 
-    <sections/>
+    <sections />
   </main>
 </template>
 
