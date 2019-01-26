@@ -1,5 +1,10 @@
 module.exports = {
   chainWebpack: config => {
+    config.plugin("html").tap(args => {
+      args[0].hash = true;
+      return args;
+    });
+
     const svgRule = config.module.rule("svg");
 
     // clear all existing loaders.
