@@ -33,6 +33,8 @@
       <span class="property-name">Content</span>
       <el-input
         v-model="editableRow.content"
+        type="textarea"
+        :rows="3"
         @change.native="handleUpdateRow('content', $event.target.value)"
       />
     </div>
