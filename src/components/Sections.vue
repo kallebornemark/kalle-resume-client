@@ -34,9 +34,7 @@ export default {
     ...mapMutations(["toggleSectionDialog", "toggleRowDialog"]),
 
     async getSections() {
-      this.sections = await API.getJson(
-        "/api/Sections?filter[include]=sectionRows"
-      );
+      this.sections = await API.getJson("/api/sections");
     },
 
     reloadData() {

@@ -124,8 +124,8 @@ export default {
 
     filteredRows() {
       return this.isLoggedIn
-        ? this.section.sectionRows
-        : this.section.sectionRows.filter(sr => !sr.hidden);
+        ? this.section.rows
+        : this.section.rows.filter(sr => !sr.hidden);
     }
   },
 
@@ -133,8 +133,9 @@ export default {
     ...mapMutations(["toggleRowDialog"]),
 
     hasColumn(columnNames) {
-      return this.section.sectionRows.some(sr =>
-        columnNames.some(cn => sr[cn])
+      return (
+        this.section.rows &&
+        this.section.rows.some(sr => columnNames.some(cn => sr[cn]))
       );
     },
 

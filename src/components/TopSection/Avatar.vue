@@ -7,30 +7,8 @@
 </template>
 
 <script>
-import API from "@/api";
-
 export default {
-  name: "Avatar",
-
-  data() {
-    return {
-      items: null
-    };
-  },
-
-  mounted() {
-    this.getInfoCardItems();
-  },
-
-  methods: {
-    async getInfoCardItems() {
-      this.items = await API.getJson("/api/InfoCardItems");
-    },
-
-    openLink(url) {
-      window.open(url, "_blank");
-    }
-  }
+  name: "Avatar"
 };
 </script>
 

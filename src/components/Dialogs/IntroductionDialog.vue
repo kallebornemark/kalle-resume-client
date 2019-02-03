@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    v-if="introduction"
+    v-if="editableIntroduction"
     class="introduction-dialog"
     title="Introduction"
     width="50rem"
@@ -10,18 +10,18 @@
     <div class="input-group">
       <span class="property-name">Title</span>
       <el-input
-        :value="introduction.title"
-        @input.native="handleUpdateIntroduction('title', $event.target.value)"
+        v-model="editableIntroduction.title"
+        @change.native="handleUpdateIntroduction('title', $event.target.value)"
       />
     </div>
 
     <div class="input-group">
       <span class="property-name">Body</span>
       <el-input
-        :value="introduction.body"
+        v-model="editableIntroduction.body"
         type="textarea"
         :rows="15"
-        @input.native="handleUpdateIntroduction('body', $event.target.value)"
+        @change.native="handleUpdateIntroduction('body', $event.target.value)"
         autofocus
       />
     </div>
@@ -46,24 +46,51 @@ import API from "@/api";
 export default {
   name: "IntroductionDialog",
 
+  props: ["reloadData"],
+
+  data() {
+    return {
+      editableIntroduction: null
+    };
+  },
+
+  watch: {
+    introduction() {
+      this.copyIntroduction();
+    }
+  },
+
   computed: {
     ...mapState(["introductionDialogIsVisible", "introduction"])
   },
 
   methods: {
-    ...mapMutations(["toggleIntroductionDialog", "updateIntroduction"]),
+    ...mapMutations(["toggleIntroductionDialog"]),
+
+    copyIntroduction() {
+      this.editableIntroduction = { ...this.introduction }; // copp values from current row in Vuex
+    },
 
     handleUpdateIntroduction(field, value) {
-      this.updateIntroduction({ field, value });
+      this.editableIntroduction[field] = value;
     },
 
     update() {
-      const jsonBody = JSON.stringify(this.introduction);
+      const jsonBody = JSON.stringify(this.editableIntroduction);
 
-      API.patch("/api/Introductions/1", jsonBody, () => {
-        this.toggleIntroductionDialog({});
+      API.put("/api/Introductions/1", jsonBody, this.reset);
+    },
+
+    reset() {
+      this.toggleIntroductionDialog({});
+      this.$nextTick(() => {
+        this.reloadData();
       });
     }
+  },
+
+  created() {
+    this.copyIntroduction();
   }
 };
 </script>

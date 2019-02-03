@@ -94,7 +94,7 @@ export default {
         return;
       }
 
-      this.setToken(response.id);
+      this.setToken(response.token);
       this.resetPopover();
     }
   }

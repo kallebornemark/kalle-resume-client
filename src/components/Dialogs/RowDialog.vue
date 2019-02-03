@@ -13,10 +13,10 @@
     <div class="input-group">
       <span class="property-name">Category</span>
       <el-input
-        :value="currentRow.category"
+        v-model="editableRow.category"
         type="textarea"
         :rows="3"
-        @input.native="handleUpdateRow('category', $event.target.value)"
+        @change.native="handleUpdateRow('category', $event.target.value)"
         autofocus
       />
     </div>
@@ -24,40 +24,40 @@
     <div class="input-group">
       <span class="property-name">Category URL</span>
       <el-input
-        :value="currentRow.linkURL"
-        @input.native="handleUpdateRow('linkURL', $event.target.value)"
+        v-model="editableRow.linkURL"
+        @change.native="handleUpdateRow('linkURL', $event.target.value)"
       />
     </div>
 
     <div class="input-group">
       <span class="property-name">Content</span>
       <el-input
-        :value="currentRow.content"
-        @input.native="handleUpdateRow('content', $event.target.value)"
+        v-model="editableRow.content"
+        @change.native="handleUpdateRow('content', $event.target.value)"
       />
     </div>
 
     <div class="input-group">
       <span class="property-name">Description</span>
       <el-input
-        :value="currentRow.description"
+        v-model="editableRow.description"
         type="textarea"
         :rows="3"
-        @input.native="handleUpdateRow('description', $event.target.value)"
+        @change.native="handleUpdateRow('description', $event.target.value)"
       />
     </div>
 
     <div class="input-group">
       <span class="property-name">Timespan</span>
       <el-input
-        :value="currentRow.timespan"
-        @input.native="handleUpdateRow('timespan', $event.target.value)"
+        v-model="editableRow.timespan"
+        @change.native="handleUpdateRow('timespan', $event.target.value)"
       />
     </div>
 
     <div class="input-group">
       <span class="property-name"></span>
-      <el-checkbox v-model="hidden">Hidden</el-checkbox>
+      <el-checkbox v-model="editableRow.hidden">Hidden</el-checkbox>
     </div>
 
     <span slot="footer" class="dialog-footer">
@@ -103,6 +103,12 @@ export default {
 
   props: ["reloadData"],
 
+  data() {
+    return {
+      editableRow: null
+    };
+  },
+
   computed: {
     ...mapState([
       "token",
@@ -110,33 +116,34 @@ export default {
       "currentRow",
       "currentSection",
       "isNewRow"
-    ]),
+    ])
+  },
 
-    hidden: {
-      get() {
-        return this.currentRow.hidden;
-      },
-      set() {
-        this.updateRow({ field: "hidden", value: !this.currentRow.hidden });
-      }
+  watch: {
+    currentRow() {
+      this.copyRow();
     }
   },
 
   methods: {
-    ...mapMutations(["toggleRowDialog", "updateRow"]),
+    ...mapMutations(["toggleRowDialog"]),
+
+    copyRow() {
+      this.editableRow = { ...this.currentRow }; // copp values from current row in Vuex
+    },
 
     handleUpdateRow(field, value) {
-      this.updateRow({ field, value });
+      this.editableRow[field] = value;
     },
 
     update() {
-      const jsonBody = JSON.stringify(this.currentRow);
+      const jsonBody = JSON.stringify(this.editableRow);
 
-      API.patch("/api/SectionRows", jsonBody, () => this.toggleRowDialog({}));
+      API.put(`/api/SectionRows/${this.currentRow.id}`, jsonBody, this.reset);
     },
 
     add() {
-      const body = { ...this.currentRow, sectionId: this.currentSection.id };
+      const body = { ...this.editableRow, section_id: this.currentSection.id };
       const jsonBody = JSON.stringify(body);
 
       API.post(
@@ -149,8 +156,8 @@ export default {
     remove() {
       if (confirm("Are you sure?")) {
         API.delete(
-          `/api/SectionRows/${this.currentRow.id}`, // enpoint
-          this.reset() // onSuccess
+          `/api/SectionRows/${this.editableRow.id}`, // enpoint
+          this.reset // onSuccess
         );
       }
     },
@@ -161,6 +168,10 @@ export default {
         this.reloadData();
       });
     }
+  },
+
+  created() {
+    this.copyRow();
   }
 };
 </script>

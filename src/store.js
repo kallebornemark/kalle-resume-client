@@ -62,10 +62,6 @@ const initStore = () =>
         state.introduction = newIntroduction;
       },
 
-      updateIntroduction(state, { field, value }) {
-        state.introduction[field] = value;
-      },
-
       // Rows
       toggleRowDialog(state, { section, index, rows, isNewRow = false }) {
         state.rowDialogIsVisible = !state.rowDialogIsVisible;
@@ -75,10 +71,6 @@ const initStore = () =>
             : getInitialRow();
         state.currentSection = section;
         state.isNewRow = isNewRow;
-      },
-
-      updateRow(state, { field, value }) {
-        state.currentRow[field] = value;
       }
     },
 

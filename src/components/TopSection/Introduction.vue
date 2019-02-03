@@ -15,7 +15,7 @@
       />
     </div>
 
-    <introduction-dialog />
+    <introduction-dialog :reload-data="reloadData" />
   </div>
 </template>
 
@@ -35,6 +35,11 @@ export default {
     async getIntroduction() {
       const introduction = await API.getJson("/api/Introductions/1");
       this.setIntroduction(introduction);
+    },
+
+    reloadData() {
+      this.setIntroduction(null);
+      this.getIntroduction();
     }
   },
 

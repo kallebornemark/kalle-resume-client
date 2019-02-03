@@ -7,17 +7,17 @@ const call = async (method, endpoint, body, onSuccess) => {
   const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: token
+    ...(token && { Authorization: `Bearer ${token}` })
   };
 
   const url = `${process.env.VUE_APP_API_URL}${endpoint}`;
   const response = await fetch(url, {
     headers,
     method,
-    ...(body ? { body } : {}) // Only add body if it exists
+    ...(body && { body }) // Only add body if it exists
   });
 
-  if (onSuccess && response.status === 200) {
+  if (onSuccess && response.status >= 200 && response.status < 300) {
     onSuccess();
   }
 
@@ -43,6 +43,10 @@ export default {
 
   patch(endpoint, body, onSuccess) {
     call("PATCH", endpoint, body, onSuccess);
+  },
+
+  put(endpoint, body, onSuccess) {
+    call("PUT", endpoint, body, onSuccess);
   },
 
   delete(endpoint, onSuccess) {
