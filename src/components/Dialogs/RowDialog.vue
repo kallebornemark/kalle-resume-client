@@ -97,38 +97,38 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-import API from "@/api";
+import { mapState, mapMutations } from 'vuex';
+import API from '@/api';
 
 export default {
-  name: "RowDialog",
+  name: 'RowDialog',
 
-  props: ["reloadData"],
+  props: ['reloadData'],
 
   data() {
     return {
-      editableRow: null
+      editableRow: null,
     };
   },
 
   computed: {
     ...mapState([
-      "token",
-      "rowDialogIsVisible",
-      "currentRow",
-      "currentSection",
-      "isNewRow"
-    ])
+      'token',
+      'rowDialogIsVisible',
+      'currentRow',
+      'currentSection',
+      'isNewRow',
+    ]),
   },
 
   watch: {
     currentRow() {
       this.copyRow();
-    }
+    },
   },
 
   methods: {
-    ...mapMutations(["toggleRowDialog"]),
+    ...mapMutations(['toggleRowDialog']),
 
     copyRow() {
       this.editableRow = { ...this.currentRow }; // copp values from current row in Vuex
@@ -149,14 +149,14 @@ export default {
       const jsonBody = JSON.stringify(body);
 
       API.post(
-        "/api/SectionRows", // endpoint
+        '/api/SectionRows', // endpoint
         jsonBody, // body
         this.reset // onSuccess
       );
     },
 
     remove() {
-      if (confirm("Are you sure?")) {
+      if (confirm('Are you sure?')) {
         API.delete(
           `/api/SectionRows/${this.editableRow.id}`, // enpoint
           this.reset // onSuccess
@@ -169,11 +169,11 @@ export default {
       this.$nextTick(() => {
         this.reloadData();
       });
-    }
+    },
   },
 
   created() {
     this.copyRow();
-  }
+  },
 };
 </script>

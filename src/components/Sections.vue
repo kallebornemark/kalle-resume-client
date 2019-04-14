@@ -11,42 +11,42 @@
 </template>
 
 <script>
-import API from "@/api";
-import { mapMutations } from "vuex";
-import Section from "@/components/Section/Section.vue";
-import Divider from "@/components/Divider.vue";
-import RowDialog from "@/components/Dialogs/RowDialog.vue";
+import API from '@/api'
+import { mapMutations } from 'vuex'
+import Section from '@/components/Section/Section.vue'
+import Divider from '@/components/Divider.vue'
+import RowDialog from '@/components/Dialogs/RowDialog.vue'
 
 export default {
   components: {
     Divider,
     RowDialog,
-    "portfolio-section": Section
+    'portfolio-section': Section,
   },
 
   data() {
     return {
-      sections: null
-    };
-  },
-
-  methods: {
-    ...mapMutations(["toggleSectionDialog", "toggleRowDialog"]),
-
-    async getSections() {
-      this.sections = await API.getJson("/api/sections");
-    },
-
-    reloadData() {
-      this.section = null;
-      this.getSections();
+      sections: null,
     }
   },
 
+  methods: {
+    ...mapMutations(['toggleSectionDialog', 'toggleRowDialog']),
+
+    async getSections() {
+      this.sections = await API.getJson('/api/sections')
+    },
+
+    reloadData() {
+      this.section = null
+      this.getSections()
+    },
+  },
+
   mounted() {
-    this.getSections();
-  }
-};
+    this.getSections()
+  },
+}
 </script>
 
 <style lang="scss" scoped>
