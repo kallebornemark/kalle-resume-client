@@ -16,7 +16,7 @@
     <!-- Desktop layout -->
     <mq-layout mq="md+">
       <el-table
-        :data="filteredRows"
+        :data="sortedAndFilteredRows"
         :show-header="false"
         row-class-name="row"
         :row-style="getRowStyle"
@@ -63,7 +63,10 @@
           <template slot-scope="scope">
             <el-button
               @click="
-                toggleRowDialog({ index: scope.$index, rows: filteredRows })
+                toggleRowDialog({
+                  index: scope.$index,
+                  rows: sortedAndFilteredRows,
+                })
               "
               icon="el-icon-edit"
               size="small"
@@ -76,7 +79,11 @@
 
     <!-- Mobile layout -->
     <mq-layout :mq="['xs', 'sm']" class="section-mobile">
-      <div v-for="(row, i) in filteredRows" :key="row.id" class="row-mobile">
+      <div
+        v-for="(row, i) in sortedAndFilteredRows"
+        :key="row.id"
+        class="row-mobile"
+      >
         <div class="category-mobile">
           <h4>
             <conditional-link :hasLink="!!row.linkURL">
@@ -96,13 +103,13 @@
 
         <el-button
           v-if="isLoggedIn"
-          @click="toggleRowDialog({ index: i, rows: filteredRows })"
+          @click="toggleRowDialog({ index: i, rows: sortedAndFilteredRows })"
           icon="el-icon-edit"
           size="small"
           circle
         />
 
-        <hr v-if="i !== filteredRows.length - 1" />
+        <hr v-if="i !== sortedAndFilteredRows.length - 1" />
       </div>
     </mq-layout>
   </section>
@@ -122,10 +129,12 @@ export default {
   computed: {
     ...mapState(['isLoggedIn']),
 
-    filteredRows() {
-      return this.isLoggedIn
-        ? this.section.rows
-        : this.section.rows.filter(sr => !sr.hidden)
+    sortedAndFilteredRows() {
+      const sortedRows = this.section.rows
+        .concat()
+        .sort((a, b) => a.order_index - b.order_index)
+
+      return this.isLoggedIn ? sortedRows : sortedRows.filter(sr => !sr.hidden)
     },
   },
 
