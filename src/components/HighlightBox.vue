@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  name: "HighlightBox"
-};
+  name: 'HighlightBox',
+}
 </script>
 
 <style scoped lang="scss">

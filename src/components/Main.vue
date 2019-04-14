@@ -9,18 +9,18 @@
 </template>
 
 <script>
-import TopSection from "@/components/TopSection/TopSection.vue";
-import DownArrow from "@/components/Icons/DownArrow/DownArrow.vue";
-import Sections from "@/components/Sections.vue";
+import TopSection from '@/components/TopSection/TopSection.vue'
+import DownArrow from '@/components/Icons/DownArrow/DownArrow.vue'
+import Sections from '@/components/Sections.vue'
 
 export default {
-  name: "MainContainer",
+  name: 'MainContainer',
   components: {
     TopSection,
     DownArrow,
-    Sections
-  }
-};
+    Sections,
+  },
+}
 </script>
 
 <style scoped lang="scss">
