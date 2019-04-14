@@ -109,41 +109,41 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-import ConditionalLink from "@/components/ConditionalLink.vue";
+import { mapState, mapMutations } from 'vuex'
+import ConditionalLink from '@/components/ConditionalLink.vue'
 
 export default {
-  name: "Section",
+  name: 'Section',
   components: {
-    ConditionalLink
+    ConditionalLink,
   },
-  props: ["section"],
+  props: ['section'],
 
   computed: {
-    ...mapState(["isLoggedIn"]),
+    ...mapState(['isLoggedIn']),
 
     filteredRows() {
       return this.isLoggedIn
         ? this.section.rows
-        : this.section.rows.filter(sr => !sr.hidden);
-    }
+        : this.section.rows.filter(sr => !sr.hidden)
+    },
   },
 
   methods: {
-    ...mapMutations(["toggleRowDialog"]),
+    ...mapMutations(['toggleRowDialog']),
 
     hasColumn(columnNames) {
       return (
         this.section.rows &&
         this.section.rows.some(sr => columnNames.some(cn => sr[cn]))
-      );
+      )
     },
 
     getRowStyle({ row }) {
-      return { opacity: row.hidden ? ".3" : "initial" };
-    }
-  }
-};
+      return { opacity: row.hidden ? '.3' : 'initial' }
+    },
+  },
+}
 </script>
 
 <style lang="scss">
