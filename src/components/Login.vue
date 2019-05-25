@@ -82,7 +82,7 @@ export default {
 
     async login() {
       const response = await API.postJson(
-        '/api/Users/login',
+        '/api/users/login',
         JSON.stringify({
           username: this.username,
           password: this.password,

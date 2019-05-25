@@ -5,10 +5,10 @@
 
       <el-button
         v-if="isLoggedIn"
-        @click="toggleRowDialog({ section, isNewRow: true })"
-        :style="{ marginLeft: '1rem' }"
-        icon="el-icon-plus"
+        @click="toggleSectionDialog({ section })"
+        icon="el-icon-edit"
         size="small"
+        :style="{ marginLeft: '1rem' }"
         circle
       />
     </div>
@@ -112,6 +112,15 @@
         <hr v-if="i !== sortedAndFilteredRows.length - 1" />
       </div>
     </mq-layout>
+
+    <el-button
+      v-if="isLoggedIn"
+      @click="toggleRowDialog({ section, isNewRow: true })"
+      icon="el-icon-plus"
+      :style="{ marginTop: '1rem' }"
+      size="small"
+      circle
+    />
   </section>
 </template>
 
@@ -139,7 +148,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['toggleRowDialog']),
+    ...mapMutations(['toggleRowDialog', 'toggleSectionDialog']),
 
     hasColumn(columnNames) {
       return (

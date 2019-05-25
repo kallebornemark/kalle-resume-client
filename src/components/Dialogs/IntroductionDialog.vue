@@ -78,7 +78,7 @@ export default {
     update() {
       const jsonBody = JSON.stringify(this.editableIntroduction);
 
-      API.put("/api/Introductions/1", jsonBody, this.reset);
+      API.put("/api/introductions/1", jsonBody, this.reset);
     },
 
     reset() {

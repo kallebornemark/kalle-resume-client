@@ -21,7 +21,6 @@ const initStore = () =>
     state: {
       token: null,
       isLoggedIn: false,
-      currentSection: null,
 
       introductionDialogIsVisible: false,
       introduction: null,
@@ -29,6 +28,9 @@ const initStore = () =>
       rowDialogIsVisible: false,
       currentRow: getInitialRow(),
       isNewRow: true,
+
+      sectionDialogIsVisible: false,
+      currentSection: null,
     },
 
     mutations: {
@@ -60,6 +62,12 @@ const initStore = () =>
 
       setIntroduction(state, newIntroduction) {
         state.introduction = newIntroduction
+      },
+
+      // Section
+      toggleSectionDialog(state, { section }) {
+        state.sectionDialogIsVisible = !state.sectionDialogIsVisible
+        state.currentSection = section
       },
 
       // Rows

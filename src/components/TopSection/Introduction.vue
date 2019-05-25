@@ -33,7 +33,7 @@ export default {
     ...mapMutations(["toggleIntroductionDialog", "setIntroduction"]),
 
     async getIntroduction() {
-      const introduction = await API.getJson("/api/Introductions/1");
+      const introduction = await API.getJson("/api/introductions/1");
       this.setIntroduction(introduction);
     },
 

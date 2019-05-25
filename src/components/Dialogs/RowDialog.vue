@@ -150,7 +150,7 @@ export default {
     update() {
       const jsonBody = JSON.stringify(this.editableRow)
 
-      API.put(`/api/SectionRows/${this.currentRow.id}`, jsonBody, this.reset)
+      API.put(`/api/sectionRows/${this.currentRow.id}`, jsonBody, this.reset)
     },
 
     add() {
@@ -158,7 +158,7 @@ export default {
       const jsonBody = JSON.stringify(body)
 
       API.post(
-        '/api/SectionRows', // endpoint
+        '/api/sectionRows', // endpoint
         jsonBody, // body
         this.reset // onSuccess
       )
@@ -167,7 +167,7 @@ export default {
     remove() {
       if (confirm('Are you sure?')) {
         API.delete(
-          `/api/SectionRows/${this.editableRow.id}`, // enpoint
+          `/api/sectionRows/${this.editableRow.id}`, // enpoint
           this.reset // onSuccess
         )
       }
