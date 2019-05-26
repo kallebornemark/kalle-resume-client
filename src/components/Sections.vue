@@ -36,7 +36,7 @@ export default {
   computed: {
     sortedSections() {
       const copy = JSON.parse(JSON.stringify(this.sections))
-      return copy.sort((a, b) => (a.id > b.id ? 1 : -1))
+      return copy && copy.sort((a, b) => (a.id > b.id ? 1 : -1))
     },
   },
 

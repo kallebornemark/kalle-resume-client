@@ -82,6 +82,7 @@
       <div
         v-for="(row, i) in sortedAndFilteredRows"
         :key="row.id"
+        :style="getRowStyle({ row })"
         class="row-mobile"
       >
         <div class="category-mobile">
