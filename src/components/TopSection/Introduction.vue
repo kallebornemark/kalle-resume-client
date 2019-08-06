@@ -20,37 +20,37 @@
 </template>
 
 <script>
-import API from "@/api";
-import { mapState, mapMutations } from "vuex";
-import IntroductionDialog from "@/components/Dialogs/IntroductionDialog.vue";
+import API from '@/api'
+import { mapState, mapMutations } from 'vuex'
+import IntroductionDialog from '@/components/Dialogs/IntroductionDialog.vue'
 
 export default {
   components: {
-    IntroductionDialog
+    IntroductionDialog,
   },
 
   methods: {
-    ...mapMutations(["toggleIntroductionDialog", "setIntroduction"]),
+    ...mapMutations(['toggleIntroductionDialog', 'setIntroduction']),
 
     async getIntroduction() {
-      const introduction = await API.getJson("/api/introductions/1");
-      this.setIntroduction(introduction);
+      const introduction = await API.getJson('/api/introductions/1')
+      this.setIntroduction(introduction)
     },
 
     reloadData() {
-      this.setIntroduction(null);
-      this.getIntroduction();
-    }
+      this.setIntroduction(null)
+      this.getIntroduction()
+    },
   },
 
   computed: {
-    ...mapState(["isLoggedIn", "introduction"])
+    ...mapState(['isLoggedIn', 'introduction']),
   },
 
   mounted() {
-    this.getIntroduction();
-  }
-};
+    this.getIntroduction()
+  },
+}
 </script>
 
 <style lang="scss" scoped>

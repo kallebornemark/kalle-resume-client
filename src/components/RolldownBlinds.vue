@@ -59,7 +59,7 @@ export default {
 
   .flag {
     position: relative;
-    background-color: rgba(149, 188, 193, 0.02);
+    background-color: rgba(190, 185, 178, 0.04);
     height: 2.9rem;
     margin: 0 1px;
     border-bottom-left-radius: 5px;
@@ -74,7 +74,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 33%;
-    color: #716967;
+    color: $color-primary;
     font-family: $font-secondary;
     letter-spacing: 2.7px;
     text-transform: lowercase;

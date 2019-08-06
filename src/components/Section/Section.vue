@@ -40,7 +40,7 @@
           prop="content"
         >
           <template slot-scope="scope">
-            <span v-html="scope.row.content" />
+            <span class="content" v-html="scope.row.content" />
             <div
               v-if="scope.row.description"
               class="description"
@@ -184,8 +184,12 @@ section {
     }
   }
 
+  .content {
+    font-weight: 600;
+  }
+
   .description {
-    color: transparentize($color: $color-primary, $amount: 0.4);
+    color: transparentize($color: $color-primary, $amount: 0.1);
   }
 }
 
@@ -218,10 +222,11 @@ section {
       margin-bottom: $spacing-xs;
       font-size: 14px;
       word-break: break-word;
+      font-weight: 500;
     }
 
     .description-mobile {
-      color: transparentize($color: $color-primary, $amount: 0.35);
+      color: transparentize($color: $color-primary, $amount: 0.1);
       font-size: 14px;
     }
 
