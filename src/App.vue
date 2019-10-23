@@ -37,8 +37,12 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0 1rem;
+  padding: 0 2rem;
   max-width: $app-max-width;
   margin: 0 auto;
+
+  @media screen and (max-width: $screen-xs) {
+    padding: 1rem;
+  }
 }
 </style>

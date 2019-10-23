@@ -28,12 +28,13 @@ header {
   text-align: center;
 
   @media screen and (max-width: $screen-xs) {
-    height: 80vh;
+    height: 60vh;
     margin-bottom: 0;
   }
 
   .content {
     height: 8.3rem;
+    margin-top: 1rem;
 
     .name {
       margin-top: 0;

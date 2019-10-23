@@ -1,9 +1,5 @@
 <template>
-  <img
-    src="https://i.imgur.com/g7unhmr.jpg"
-    @click="openLink('https://i.imgur.com/g7unhmr.jpg')"
-    alt
-  />
+  <img src="https://i.imgur.com/g7unhmr.jpg" alt />
 </template>
 
 <script>
@@ -17,7 +13,6 @@ img {
   display: block;
   max-height: 100%;
   width: 100%;
-  cursor: pointer;
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.11);
@@ -29,7 +24,8 @@ img {
 
   @media screen and (max-width: $screen-xs) {
     max-height: unset;
-    border-radius: $border-radius-default;
+    max-width: 70%;
+    margin: 0 auto;
   }
 }
 </style>
