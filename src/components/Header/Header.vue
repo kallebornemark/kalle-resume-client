@@ -2,7 +2,7 @@
   <header>
     <section class="content">
       <h1 class="name">Kalle Bornemark</h1>
-      <rolldown-blinds text="software builder 🔧👷‍♂️" />
+      <rolldown-blinds text="software builder 🔧" />
     </section>
 
     <login />
@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import Login from "@/components/Login.vue";
-import RolldownBlinds from "@/components/RolldownBlinds.vue";
+import Login from '@/components/Login.vue'
+import RolldownBlinds from '@/components/RolldownBlinds.vue'
 
 export default {
-  name: "Header",
-  components: { Login, RolldownBlinds }
-};
+  name: 'Header',
+  components: { Login, RolldownBlinds },
+}
 </script>
 
 <style scoped lang="scss">
@@ -37,9 +37,9 @@ header {
 
     .name {
       margin-top: 0;
-      margin-bottom: 1.3rem;
+      margin-bottom: 1.2rem;
       color: $color-primary;
-      font-size: 2.8em;
+      font-size: 2.6em;
       font-family: $font-primary;
       font-weight: 400;
     }

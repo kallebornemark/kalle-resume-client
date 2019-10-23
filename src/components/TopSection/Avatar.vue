@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  name: "Avatar"
-};
+  name: 'Avatar',
+}
 </script>
 
 <style scoped lang="scss">
@@ -19,8 +19,9 @@ img {
   width: 100%;
   cursor: pointer;
   object-fit: cover;
-  @include border-thick;
   border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.11);
+  box-shadow: 2px 4px 9px 1px rgba(0, 0, 0, 0.05);
 
   @media screen and (max-width: $screen-md) {
     max-width: 100%;

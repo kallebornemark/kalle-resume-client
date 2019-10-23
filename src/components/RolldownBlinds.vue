@@ -21,7 +21,7 @@ export default {
 
 <style lang="scss">
 .rolldown-blinds {
-  width: 15rem;
+  width: 18rem;
   margin: 0 auto;
   max-width: 100%;
   position: relative;
@@ -37,11 +37,12 @@ export default {
     position: relative;
 
     .knob {
+      box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.03);
       position: absolute;
       width: 4px;
-      background: #b6b6b6;
-      top: -2px;
       height: 4px;
+      background: #fdc27e;
+      top: -2px;
       overflow: hidden;
 
       &.left {
@@ -65,7 +66,8 @@ export default {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     overflow: hidden;
-    @include border-thick;
+    box-shadow: 2px 4px 7px 1px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.11);
     border-top: none;
   }
 
@@ -74,18 +76,18 @@ export default {
     left: 0;
     right: 0;
     bottom: 33%;
-    color: $color-primary;
+    color: #5e5e5e;
     font-family: $font-secondary;
     letter-spacing: 2.7px;
     text-transform: lowercase;
     font-size: 0.8em;
-    font-weight: 400;
+    font-weight: 600;
     margin: 0;
   }
 }
 
 .slide-down-enter-active {
-  transition: height 0.4s cubic-bezier(0.455, 0.505, 0, 1.22);
+  transition: height 0.5s cubic-bezier(0.455, 0.505, 0, 1.22);
   transition-delay: 0.7s;
 }
 .slide-down-enter {
