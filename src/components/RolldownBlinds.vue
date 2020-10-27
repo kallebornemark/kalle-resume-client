@@ -75,7 +75,7 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 33%;
+    bottom: 29%;
     color: #5e5e5e;
     font-family: $font-secondary;
     letter-spacing: 2.7px;

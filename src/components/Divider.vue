@@ -11,7 +11,7 @@ export default {
 <style lang="scss" scoped>
 hr {
   height: 2px;
-  background-color: $color-accent;
+  background-color: transparentize($color: $color-primary, $amount: 0.6);
   width: 5rem;
   border: none;
   margin: 0 auto;

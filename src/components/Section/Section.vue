@@ -40,7 +40,7 @@
           prop="content"
         >
           <template slot-scope="scope">
-            <span class="content" v-html="scope.row.content" />
+            <h3 class="content" v-html="scope.row.content" />
             <div
               v-if="scope.row.description"
               class="description"
@@ -55,7 +55,7 @@
           width="150"
         >
           <template slot-scope="scope">
-            <span>{{ scope.row.timespan }}</span>
+            <span class="timespan">{{ scope.row.timespan }}</span>
           </template>
         </el-table-column>
 
@@ -92,7 +92,7 @@
               <span slot="text">{{ row.category }}</span>
             </conditional-link>
           </h4>
-          <span>{{ row.timespan }}</span>
+          <span class="timespan">{{ row.timespan }}</span>
         </div>
 
         <div class="content-mobile" v-if="row.content">
@@ -171,21 +171,26 @@ section {
     display: flex;
     flex-wrap: none;
     align-items: center;
-    margin-bottom: 0.7rem;
-
-    @media screen and (max-width: $screen-sm) {
-      margin-bottom: 1.6rem;
-    }
+    margin-bottom: 1.7rem;
 
     h2 {
       margin: 0;
       font-family: $font-secondary;
       font-weight: bold;
+      line-height: 2.2;
+      border-bottom: 4px solid $color-accent-faded;
+      padding: 0 1.2rem 0 1.1rem;
+
+      @media screen and (max-width: $screen-sm) {
+        padding: 0 0.7rem 0 0.5rem;
+      }
     }
   }
 
   .content {
     font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 0.3rem 0;
   }
 
   .description {
@@ -200,10 +205,11 @@ section {
 
 .section-mobile {
   .row-mobile {
+    font-size: 16px;
+
     h4 {
-      font-size: 15px;
       margin-top: 0;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
       color: $color-primary;
     }
 
@@ -215,19 +221,17 @@ section {
     .category-mobile {
       display: flex;
       justify-content: space-between;
-      font-size: 14px;
     }
 
     .content-mobile {
       margin-bottom: $spacing-xs;
-      font-size: 14px;
       word-break: break-word;
       font-weight: 500;
+      margin-bottom: 0.3rem;
     }
 
     .description-mobile {
       color: transparentize($color: $color-primary, $amount: 0.1);
-      font-size: 14px;
     }
 
     .content-mobile,
@@ -240,5 +244,9 @@ section {
     margin: 1.5rem 0;
     opacity: 0.15;
   }
+}
+
+.timespan {
+  font-size: 14px;
 }
 </style>
