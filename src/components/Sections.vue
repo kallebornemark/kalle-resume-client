@@ -1,7 +1,7 @@
 <template>
   <div class="sections">
     <i v-if="!sections" class="el-icon-loading" />
-    <div v-for="(section, i) in sortedSections" :key="section.id">
+    <div v-for="(section, i) in sortedAndFilteredSections" :key="section.id">
       <portfolio-section v-bind="{ section }" />
       <divider v-if="i !== sections.length - 1" />
     </div>
@@ -13,7 +13,7 @@
 
 <script>
 import API from '@/api'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import Section from '@/components/Section/Section.vue'
 import Divider from '@/components/Divider.vue'
 import RowDialog from '@/components/Dialogs/RowDialog.vue'
@@ -34,9 +34,12 @@ export default {
   },
 
   computed: {
-    sortedSections() {
+    ...mapState(['isLoggedIn']),
+
+    sortedAndFilteredSections() {
       const copy = JSON.parse(JSON.stringify(this.sections))
-      return copy && copy.sort((a, b) => (a.id > b.id ? 1 : -1))
+      const sorted = copy.sort((a, b) => (a.id > b.id ? 1 : -1))
+      return this.isLoggedIn ? sorted : sorted.filter(s => !s.hidden)
     },
   },
 

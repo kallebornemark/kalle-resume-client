@@ -16,6 +16,11 @@
       />
     </div>
 
+    <div class="input-group">
+      <span class="property-name"></span>
+      <el-checkbox v-model="editableSection.hidden">Hidden</el-checkbox>
+    </div>
+
     <span slot="footer" class="dialog-footer">
       <el-button
         type="primary"
@@ -92,8 +97,8 @@ export default {
     },
 
     update() {
-      const { id, name } = this.editableSection
-      const payload = { id, name }
+      const { id, name, hidden } = this.editableSection
+      const payload = { id, name, hidden }
       const jsonBody = JSON.stringify(payload)
 
       API.put(`/api/sections/${this.currentSection.id}`, jsonBody, this.reset)

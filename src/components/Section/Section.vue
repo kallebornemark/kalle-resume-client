@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section :style="{ opacity: this.section.hidden ? '.3' : 'initial' }">
     <div class="heading">
       <h2>{{ section.name }}</h2>
 
