@@ -38,6 +38,9 @@ export default {
 
     sortedAndFilteredSections() {
       const copy = JSON.parse(JSON.stringify(this.sections))
+      if (!copy) {
+        return []
+      }
       const sorted = copy.sort((a, b) => (a.id > b.id ? 1 : -1))
       return this.isLoggedIn ? sorted : sorted.filter(s => !s.hidden)
     },

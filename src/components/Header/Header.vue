@@ -2,7 +2,7 @@
   <header>
     <section class="content">
       <h1 class="name">Kalle Bornemark</h1>
-      <rolldown-blinds text="software builder 🔧" />
+      <!-- <rolldown-blinds text="software builder 🔧" /> -->
     </section>
 
     <login />
@@ -11,11 +11,11 @@
 
 <script>
 import Login from '@/components/Login.vue'
-import RolldownBlinds from '@/components/RolldownBlinds.vue'
+// import RolldownBlinds from '@/components/RolldownBlinds.vue'
 
 export default {
   name: 'Header',
-  components: { Login, RolldownBlinds },
+  components: { Login /* RolldownBlinds */ },
 }
 </script>
 
@@ -28,7 +28,7 @@ header {
   text-align: center;
 
   @media screen and (max-width: $screen-xs) {
-    height: 60vh;
+    height: 70vh;
     margin-bottom: 0;
   }
 
@@ -38,11 +38,16 @@ header {
 
     .name {
       margin-top: 0;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.7rem;
       color: $color-primary;
-      font-size: 2.6em;
-      font-family: $font-primary;
+      font-size: 3.1em;
       font-weight: 400;
+      font-family: 'Pacifico';
+
+      @media screen and (max-width: $screen-xs) {
+        font-size: 15vw;
+        line-height: 1.3;
+      }
     }
   }
 }
