@@ -5,7 +5,7 @@
 <script>
 export default {
   name: 'HighlightBox',
-}
+};
 </script>
 
 <style scoped lang="scss">

@@ -1,11 +1,11 @@
 module.exports = {
-  chainWebpack: config => {
-    config.plugin('html').tap(args => {
+  chainWebpack: (config) => {
+    config.plugin("html").tap((args) => {
       args[0].hash = true;
       return args;
     });
 
-    const svgRule = config.module.rule('svg');
+    const svgRule = config.module.rule("svg");
 
     // clear all existing loaders.
     // if you don't do this, the loader below will be appended to
@@ -13,7 +13,7 @@ module.exports = {
     svgRule.uses.clear();
 
     // add replacement loader(s)
-    svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+    svgRule.use("vue-svg-loader").loader("vue-svg-loader");
   },
   css: {
     loaderOptions: {

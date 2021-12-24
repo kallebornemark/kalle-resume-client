@@ -5,8 +5,8 @@
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "eslint src/**/*.{js,vue}",
-    "lint:fix": "eslint src/**/*.{js,vue} --fix",
+    "lint": "eslint src --ext .js,.vue",
+    "lint:fix": "eslint src --ext .js,.vue --fix",
     "test:unit": "vue-cli-service test:unit",
     "deploy": "./deploy.sh"
   },

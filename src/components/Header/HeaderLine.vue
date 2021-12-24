@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "HeaderLine"
+  name: 'HeaderLine',
 };
 </script>
 

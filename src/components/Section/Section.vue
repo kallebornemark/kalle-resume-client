@@ -126,8 +126,8 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
-import ConditionalLink from '@/components/ConditionalLink.vue'
+import { mapState, mapMutations } from 'vuex';
+import ConditionalLink from '@/components/ConditionalLink.vue';
 
 export default {
   name: 'Section',
@@ -142,9 +142,9 @@ export default {
     sortedAndFilteredRows() {
       const sortedRows = this.section.rows
         .concat()
-        .sort((a, b) => a.order_index - b.order_index)
+        .sort((a, b) => a.order_index - b.order_index);
 
-      return this.isLoggedIn ? sortedRows : sortedRows.filter(sr => !sr.hidden)
+      return this.isLoggedIn ? sortedRows : sortedRows.filter(sr => !sr.hidden);
     },
   },
 
@@ -155,14 +155,14 @@ export default {
       return (
         this.section.rows &&
         this.section.rows.some(sr => columnNames.some(cn => sr[cn]))
-      )
+      );
     },
 
     getRowStyle({ row }) {
-      return { opacity: row.hidden ? '.3' : 'initial' }
+      return { opacity: row.hidden ? '.3' : 'initial' };
     },
   },
-}
+};
 </script>
 
 <style lang="scss">

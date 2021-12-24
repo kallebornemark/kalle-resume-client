@@ -56,8 +56,8 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
-import API from '@/api'
+import { mapState, mapMutations } from 'vuex';
+import API from '@/api';
 
 export default {
   name: 'SectionDialog',
@@ -67,7 +67,7 @@ export default {
   data() {
     return {
       editableSection: null,
-    }
+    };
   },
 
   computed: {
@@ -81,7 +81,7 @@ export default {
 
   watch: {
     currentSection() {
-      this.copySection()
+      this.copySection();
     },
   },
 
@@ -89,19 +89,19 @@ export default {
     ...mapMutations(['toggleSectionDialog']),
 
     copySection() {
-      this.editableSection = { ...this.currentSection } // copy values from current section in Vuex
+      this.editableSection = { ...this.currentSection }; // copy values from current section in Vuex
     },
 
     handleUpdateSection(field, value) {
-      this.editableSection[field] = value
+      this.editableSection[field] = value;
     },
 
     update() {
-      const { id, name, hidden } = this.editableSection
-      const payload = { id, name, hidden }
-      const jsonBody = JSON.stringify(payload)
+      const { id, name, hidden } = this.editableSection;
+      const payload = { id, name, hidden };
+      const jsonBody = JSON.stringify(payload);
 
-      API.put(`/api/sections/${this.currentSection.id}`, jsonBody, this.reset)
+      API.put(`/api/sections/${this.currentSection.id}`, jsonBody, this.reset);
     },
 
     remove() {
@@ -109,20 +109,20 @@ export default {
         API.delete(
           `/api/sections/${this.editableSection.id}`, // enpoint
           this.reset // onSuccess
-        )
+        );
       }
     },
 
     reset() {
-      this.toggleSectionDialog({})
+      this.toggleSectionDialog({});
       this.$nextTick(() => {
-        this.reloadData()
-      })
+        this.reloadData();
+      });
     },
   },
 
   created() {
-    this.copySection()
+    this.copySection();
   },
-}
+};
 </script>

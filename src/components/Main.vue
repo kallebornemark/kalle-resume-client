@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import TopSection from '@/components/TopSection/TopSection.vue'
-import DownArrow from '@/components/Icons/DownArrow/DownArrow.vue'
-import Sections from '@/components/Sections.vue'
+import TopSection from '@/components/TopSection/TopSection.vue';
+import DownArrow from '@/components/Icons/DownArrow/DownArrow.vue';
+import Sections from '@/components/Sections.vue';
 
 export default {
   name: 'MainContainer',
@@ -20,7 +20,7 @@ export default {
     DownArrow,
     Sections,
   },
-}
+};
 </script>
 
 <style scoped lang="scss">

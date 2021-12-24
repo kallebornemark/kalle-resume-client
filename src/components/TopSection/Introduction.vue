@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import API from '@/api'
-import { mapState, mapMutations } from 'vuex'
-import IntroductionDialog from '@/components/Dialogs/IntroductionDialog.vue'
+import API from '@/api';
+import { mapState, mapMutations } from 'vuex';
+import IntroductionDialog from '@/components/Dialogs/IntroductionDialog.vue';
 
 export default {
   components: {
@@ -33,13 +33,13 @@ export default {
     ...mapMutations(['toggleIntroductionDialog', 'setIntroduction']),
 
     async getIntroduction() {
-      const introduction = await API.getJson('/api/introductions/1')
-      this.setIntroduction(introduction)
+      const introduction = await API.getJson('/api/introductions/1');
+      this.setIntroduction(introduction);
     },
 
     reloadData() {
-      this.setIntroduction(null)
-      this.getIntroduction()
+      this.setIntroduction(null);
+      this.getIntroduction();
     },
   },
 
@@ -48,9 +48,9 @@ export default {
   },
 
   mounted() {
-    this.getIntroduction()
+    this.getIntroduction();
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

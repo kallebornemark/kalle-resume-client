@@ -34,18 +34,18 @@
 </template>
 
 <script>
-import Email from "./email.svg";
-import Twitter from "./twitter.svg";
-import Github from "./github.svg";
-import LinkedIn from "./linkedin.svg";
+import Email from './email.svg';
+import Twitter from './twitter.svg';
+import Github from './github.svg';
+import LinkedIn from './linkedin.svg';
 
 export default {
   components: {
     Email,
     Twitter,
     Github,
-    LinkedIn
-  }
+    LinkedIn,
+  },
 };
 </script>
 

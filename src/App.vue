@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import Header from '@/components/Header/Header.vue'
-import Main from '@/components/Main.vue'
-import Footer from '@/components/Footer.vue'
-import '@/styles/styles.scss'
-import { mapMutations } from 'vuex'
+import Header from '@/components/Header/Header.vue';
+import Main from '@/components/Main.vue';
+import Footer from '@/components/Footer.vue';
+import '@/styles/styles.scss';
+import { mapMutations } from 'vuex';
 
 export default {
   components: {
@@ -27,9 +27,9 @@ export default {
   },
 
   created() {
-    this.attemptToSetTokenFromLocalStorage()
+    this.attemptToSetTokenFromLocalStorage();
   },
-}
+};
 </script>
 
 <style lang="scss">

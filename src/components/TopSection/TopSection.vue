@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import Avatar from '@/components/TopSection/Avatar.vue'
-import Introduction from '@/components/TopSection/Introduction.vue'
-import SocialButtons from '@/components/TopSection/SocialButtons/SocialButtons.vue'
+import Avatar from '@/components/TopSection/Avatar.vue';
+import Introduction from '@/components/TopSection/Introduction.vue';
+import SocialButtons from '@/components/TopSection/SocialButtons/SocialButtons.vue';
 
 export default {
   name: 'TopSection',
@@ -24,7 +24,7 @@ export default {
     SocialButtons,
     Introduction,
   },
-}
+};
 </script>
 
 <style lang="scss">

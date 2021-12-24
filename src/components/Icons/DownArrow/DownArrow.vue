@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import DownArrow from "./down-arrow.svg";
+import DownArrow from './down-arrow.svg';
 export default {
   components: {
-    DownArrow
-  }
+    DownArrow,
+  },
 };
 </script>
 

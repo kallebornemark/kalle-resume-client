@@ -45,8 +45,8 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
-import API from '@/api'
+import { mapState, mapMutations } from 'vuex';
+import API from '@/api';
 
 export default {
   name: 'LoginTrigger',
@@ -56,14 +56,14 @@ export default {
       isVisible: false,
       username: '',
       password: '',
-    }
+    };
   },
 
   computed: {
     ...mapState(['isLoggedIn']),
 
     iconOpacity() {
-      return this.isVisible ? 1 : null
+      return this.isVisible ? 1 : null;
     },
   },
 
@@ -71,13 +71,13 @@ export default {
     ...mapMutations(['setToken', 'logout']),
 
     togglePopover() {
-      this.isVisible = !this.isVisible
+      this.isVisible = !this.isVisible;
     },
 
     resetPopover() {
-      this.isVisible = false
-      this.username = ''
-      this.password = ''
+      this.isVisible = false;
+      this.username = '';
+      this.password = '';
     },
 
     async login() {
@@ -87,18 +87,18 @@ export default {
           username: this.username,
           password: this.password,
         })
-      )
+      );
 
       if (response.error) {
-        alert('Unsuccessful login!')
-        return
+        alert('Unsuccessful login!');
+        return;
       }
 
-      this.setToken(response.token)
-      this.resetPopover()
+      this.setToken(response.token);
+      this.resetPopover();
     },
   },
-}
+};
 </script>
 
 <style lang="scss">

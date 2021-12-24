@@ -106,8 +106,8 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
-import API from '@/api'
+import { mapState, mapMutations } from 'vuex';
+import API from '@/api';
 
 export default {
   name: 'RowDialog',
@@ -117,7 +117,7 @@ export default {
   data() {
     return {
       editableRow: null,
-    }
+    };
   },
 
   computed: {
@@ -132,7 +132,7 @@ export default {
 
   watch: {
     currentRow() {
-      this.copyRow()
+      this.copyRow();
     },
   },
 
@@ -140,28 +140,28 @@ export default {
     ...mapMutations(['toggleRowDialog']),
 
     copyRow() {
-      this.editableRow = { ...this.currentRow } // copp values from current row in Vuex
+      this.editableRow = { ...this.currentRow }; // copp values from current row in Vuex
     },
 
     handleUpdateRow(field, value) {
-      this.editableRow[field] = value
+      this.editableRow[field] = value;
     },
 
     update() {
-      const jsonBody = JSON.stringify(this.editableRow)
+      const jsonBody = JSON.stringify(this.editableRow);
 
-      API.put(`/api/sectionRows/${this.currentRow.id}`, jsonBody, this.reset)
+      API.put(`/api/sectionRows/${this.currentRow.id}`, jsonBody, this.reset);
     },
 
     add() {
-      const body = { ...this.editableRow, section_id: this.currentSection.id }
-      const jsonBody = JSON.stringify(body)
+      const body = { ...this.editableRow, section_id: this.currentSection.id };
+      const jsonBody = JSON.stringify(body);
 
       API.post(
         '/api/sectionRows', // endpoint
         jsonBody, // body
         this.reset // onSuccess
-      )
+      );
     },
 
     remove() {
@@ -169,20 +169,20 @@ export default {
         API.delete(
           `/api/sectionRows/${this.editableRow.id}`, // enpoint
           this.reset // onSuccess
-        )
+        );
       }
     },
 
     reset() {
-      this.toggleRowDialog({})
+      this.toggleRowDialog({});
       this.$nextTick(() => {
-        this.reloadData()
-      })
+        this.reloadData();
+      });
     },
   },
 
   created() {
-    this.copyRow()
+    this.copyRow();
   },
-}
+};
 </script>

@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import API from '@/api'
-import { mapMutations, mapState } from 'vuex'
-import Section from '@/components/Section/Section.vue'
-import Divider from '@/components/Divider.vue'
-import RowDialog from '@/components/Dialogs/RowDialog.vue'
-import SectionDialog from '@/components/Dialogs/SectionDialog.vue'
+import API from '@/api';
+import { mapMutations, mapState } from 'vuex';
+import Section from '@/components/Section/Section.vue';
+import Divider from '@/components/Divider.vue';
+import RowDialog from '@/components/Dialogs/RowDialog.vue';
+import SectionDialog from '@/components/Dialogs/SectionDialog.vue';
 
 export default {
   components: {
@@ -30,19 +30,19 @@ export default {
   data() {
     return {
       sections: null,
-    }
+    };
   },
 
   computed: {
     ...mapState(['isLoggedIn']),
 
     sortedAndFilteredSections() {
-      const copy = JSON.parse(JSON.stringify(this.sections))
+      const copy = JSON.parse(JSON.stringify(this.sections));
       if (!copy) {
-        return []
+        return [];
       }
-      const sorted = copy.sort((a, b) => (a.id > b.id ? 1 : -1))
-      return this.isLoggedIn ? sorted : sorted.filter(s => !s.hidden)
+      const sorted = copy.sort((a, b) => (a.id > b.id ? 1 : -1));
+      return this.isLoggedIn ? sorted : sorted.filter(s => !s.hidden);
     },
   },
 
@@ -50,19 +50,19 @@ export default {
     ...mapMutations(['toggleSectionDialog', 'toggleRowDialog']),
 
     async getSections() {
-      this.sections = await API.getJson('/api/sections')
+      this.sections = await API.getJson('/api/sections');
     },
 
     reloadData() {
-      this.section = null
-      this.getSections()
+      this.section = null;
+      this.getSections();
     },
   },
 
   mounted() {
-    this.getSections()
+    this.getSections();
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

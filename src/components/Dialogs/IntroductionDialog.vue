@@ -40,32 +40,32 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-import API from "@/api";
+import { mapState, mapMutations } from 'vuex';
+import API from '@/api';
 
 export default {
-  name: "IntroductionDialog",
+  name: 'IntroductionDialog',
 
-  props: ["reloadData"],
+  props: ['reloadData'],
 
   data() {
     return {
-      editableIntroduction: null
+      editableIntroduction: null,
     };
   },
 
   watch: {
     introduction() {
       this.copyIntroduction();
-    }
+    },
   },
 
   computed: {
-    ...mapState(["introductionDialogIsVisible", "introduction"])
+    ...mapState(['introductionDialogIsVisible', 'introduction']),
   },
 
   methods: {
-    ...mapMutations(["toggleIntroductionDialog"]),
+    ...mapMutations(['toggleIntroductionDialog']),
 
     copyIntroduction() {
       this.editableIntroduction = { ...this.introduction }; // copp values from current row in Vuex
@@ -78,7 +78,7 @@ export default {
     update() {
       const jsonBody = JSON.stringify(this.editableIntroduction);
 
-      API.put("/api/introductions/1", jsonBody, this.reset);
+      API.put('/api/introductions/1', jsonBody, this.reset);
     },
 
     reset() {
@@ -86,11 +86,11 @@ export default {
       this.$nextTick(() => {
         this.reloadData();
       });
-    }
+    },
   },
 
   created() {
     this.copyIntroduction();
-  }
+  },
 };
 </script>
