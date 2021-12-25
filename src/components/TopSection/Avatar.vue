@@ -1,5 +1,5 @@
 <template>
-  <img src="https://i.imgur.com/g7unhmr.jpg" alt />
+  <img src="https://i.imgur.com/pd04s14.jpg" alt />
 </template>
 
 <script>
@@ -9,6 +9,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+a {
+  &:hover:before {
+    visibility: hidden;
+  }
+}
 img {
   display: block;
   max-height: 100%;
