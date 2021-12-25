@@ -5,17 +5,19 @@
       <!-- <rolldown-blinds text="software builder 🔧" /> -->
     </section>
 
+    <theme-toggle />
     <login />
   </header>
 </template>
 
 <script>
-import Login from '@/components/Login.vue';
+import Login from '@/components/Header/Login.vue';
+import ThemeToggle from '@/components/Header/ThemeToggle.vue';
 // import RolldownBlinds from '@/components/RolldownBlinds.vue'
 
 export default {
   name: 'Header',
-  components: { Login /* RolldownBlinds */ },
+  components: { Login, ThemeToggle /* RolldownBlinds */ },
 };
 </script>
 
@@ -26,6 +28,7 @@ header {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
 
   @media screen and (max-width: $screen-xs) {
     height: 70vh;
@@ -39,7 +42,6 @@ header {
     .name {
       margin-top: 0;
       margin-bottom: 0.7rem;
-      color: $color-primary;
       font-size: 3.1em;
       font-weight: 400;
       font-family: 'Pacifico';

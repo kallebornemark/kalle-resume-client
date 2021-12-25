@@ -21,6 +21,7 @@
         row-class-name="row"
         :row-style="getRowStyle"
         cell-class-name="cell"
+        :style="{ background: 'none', color: 'var(--text-color)' }"
       >
         <el-table-column
           v-if="hasColumn(['category'])"
@@ -159,7 +160,7 @@ export default {
     },
 
     getRowStyle({ row }) {
-      return { opacity: row.hidden ? '.3' : 'initial' };
+      return { opacity: row.hidden ? '.3' : 'initial', background: 'none' };
     },
   },
 };
@@ -192,10 +193,6 @@ section {
     font-size: 16px;
     margin: 0 0 0.3rem 0;
   }
-
-  .description {
-    color: transparentize($color: $color-primary, $amount: 0.1);
-  }
 }
 
 .cell {
@@ -210,7 +207,6 @@ section {
     h4 {
       margin-top: 0;
       margin-bottom: 0.6rem;
-      color: $color-primary;
     }
 
     /* Edit row button */
@@ -228,10 +224,6 @@ section {
       word-break: break-word;
       font-weight: 500;
       margin-bottom: 0.3rem;
-    }
-
-    .description-mobile {
-      color: transparentize($color: $color-primary, $amount: 0.1);
     }
 
     .content-mobile,

@@ -104,11 +104,10 @@ export default {
 <style lang="scss">
 .login-trigger {
   position: absolute;
-  right: $spacing-sm;
   top: $spacing-sm;
-  padding: $spacing-xs;
-  font-size: 1.5em;
-  opacity: 0.12;
+  right: 0;
+  font-size: 1.25em;
+  opacity: 0.3;
   cursor: pointer;
 
   &:hover {

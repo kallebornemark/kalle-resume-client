@@ -13,6 +13,24 @@ const getInitialRow = () => ({
   hidden: false,
 });
 
+const initDarkMode = () => {
+  const darkMode = JSON.parse(localStorage.getItem('darkMode'));
+  setDarkMode(darkMode);
+  return darkMode;
+};
+
+const setDarkMode = value => {
+  document.documentElement.style.setProperty(
+    '--bg-color',
+    value ? '#22252a' : 'white'
+  );
+  document.documentElement.style.setProperty(
+    '--text-color',
+    value ? 'hsla(0,0%,100%,0.88)' : '#303030'
+  );
+  localStorage.setItem('darkMode', value);
+};
+
 let store;
 
 const initStore = () =>
@@ -31,6 +49,8 @@ const initStore = () =>
 
       sectionDialogIsVisible: false,
       currentSection: null,
+
+      darkMode: initDarkMode(),
     },
 
     mutations: {
@@ -79,6 +99,12 @@ const initStore = () =>
             : getInitialRow();
         state.currentSection = section;
         state.isNewRow = isNewRow;
+      },
+
+      toggleDarkMode(state) {
+        const newValue = !state.darkMode;
+        state.darkMode = newValue;
+        setDarkMode(newValue);
       },
     },
 

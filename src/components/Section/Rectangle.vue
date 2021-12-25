@@ -12,7 +12,6 @@ export default {
 .rectangle {
   font-size: 1.5em;
   color: darken($color-accent-faded, 4%);
-  // color: $color-accent-faded;
   margin-right: 1rem;
   margin-top: 2px;
 }

@@ -42,7 +42,7 @@ export default {
   margin: 0 auto;
 
   @media screen and (max-width: $screen-xs) {
-    padding: 1rem;
+    padding: 0 1rem;
   }
 }
 </style>

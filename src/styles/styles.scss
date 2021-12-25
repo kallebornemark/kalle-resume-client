@@ -56,6 +56,23 @@ h2 {
 }
 
 .el-table {
-  color: $color-primary;
   font-size: 16px;
+  &::before {
+    background: none;
+  }
+
+  td {
+    padding-bottom: 1rem;
+  }
+}
+
+:root {
+  --bg-color: white; // dark mode: #22252a
+  --text-color: #303030; // dark mode: hsla(0,0%,100%,0.88)
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.08s ease-out;
 }

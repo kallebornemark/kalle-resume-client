@@ -63,11 +63,13 @@ export default {
   a {
     svg {
       height: 2.2rem;
-      fill: $color-icon;
+      fill: var(--text-color);
+      opacity: 0.3;
       cursor: pointer;
       @include hover-enlarge;
 
       &:hover {
+        opacity: 1;
         fill: $color-accent;
       }
     }
